@@ -12,6 +12,7 @@ import Transfer from './components/Transfer';
 import ReferalIncome from './components/dashboard/ReferalIncome';
 import MyTeam from './components/MyTeam';
 import Login from './components/loginpage/Login';
+import AdminLogin from './admin/AdminLogin';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <div>
         <Switch>
           <Route exact path="/" component={Login} />
+          <Route exact path="/admin/" component={AdminLogin} />
           <div className="App">
             <Sidebar />
             <Route exact path="/dashboard" component={Dashboard} />

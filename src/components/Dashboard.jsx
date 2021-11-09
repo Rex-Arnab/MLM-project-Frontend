@@ -14,16 +14,16 @@ function Dashboard() {
         <div>
             <div className="d-flex flex-column">
                 <div className="p-2">
-                    <h5>Name: { user.username }</h5>
-                    <h5>ID: { user.uid} </h5>
-                    <h5>Joining Date:{ new Date(user.created_at).toLocaleDateString()}</h5>
+                    <h5 className="text-black">Name: { user.username }</h5>
+                    <h5 className="text-black">ID: { user.uid} </h5>
+                    <h5 className="text-black">Joining Date:{ new Date(user.created_at).toLocaleDateString()}</h5>
                 </div>
             </div>
             
             <div className="d-flex flex-column">
                 <div className="text-center">
                     <h4>
-                        <b>Offers Provided By Company</b>
+                        <b className="text-black">Offers Provided By Company</b>
                     </h4>
                 </div>
             </div>

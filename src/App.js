@@ -22,7 +22,7 @@ function App() {
   return (
     <userContext.Provider value={{ user: user, setUser: setUser}}>
     <Router
-        basename={window.location.hostname === 'localhost' ? '/' : 'MLM-project-Frontend/build/'}
+        basename={(window.location.hostname === 'localhost' || window.location.hostname === "mlm-project-frontend-xql9.vercel.app" ) ? '/' : 'MLM-project-Frontend/build/'}
       >
       <div>
         <Switch>

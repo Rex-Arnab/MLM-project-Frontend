@@ -13,6 +13,7 @@ import ReferalIncome from './components/dashboard/ReferalIncome';
 import MyTeam from './components/MyTeam';
 import Login from './components/loginpage/Login';
 import AdminLogin from './admin/AdminLogin';
+import AdminDashboard from './admin/Dashboard';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/admin/" component={AdminLogin} />
+          <Route exact path="/admin/dashboard" component={AdminDashboard} />
           <div className="App">
             <Sidebar />
             <Route exact path="/dashboard" component={Dashboard} />

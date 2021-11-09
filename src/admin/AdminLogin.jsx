@@ -1,10 +1,12 @@
 import axios from 'axios'
 import { useState } from 'react'
 import "./adminLogin.css"
+import { useHistory } from 'react-router-dom'
 
 export default function AdminLogin() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const history = useHistory()
 
     const LoginCheck = (e) => {
         e.preventDefault();
@@ -14,14 +16,16 @@ export default function AdminLogin() {
         password: password
         })
         .then(res => {
-            console.log(res)
+            localStorage.setItem('token', res.data.token)
+            localStorage.setItem('username', JSON.stringify(res.data.user))
+            history.push('/admin/dashboard')
         })
         .catch(err => {
             console.log(err)
         })
     }
     return (
-    <div className="container">
+    <div className="container container-body">
         <div className="row">
             <div className="col-lg-3 col-md-2"></div>
             <div className="col-lg-6 col-md-8 login-box">

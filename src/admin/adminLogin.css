@@ -1,6 +1,7 @@
-body {
+.container-body {
   background: #222d32;
   font-family: "Roboto", sans-serif;
+  height: 100vh;
 }
 
 .login-box {
@@ -18,6 +19,7 @@ body {
   background: -webkit-linear-gradient(#27ef9f, #0db8de);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin-top: 20px;
 }
 
 .login-title {

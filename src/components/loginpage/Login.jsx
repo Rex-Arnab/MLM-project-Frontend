@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import "./login.css"
 import axios from 'axios'
+import fortawesome from '@fortawesome/fontawesome'
 
 
 export default function Login() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [loading, setLoading] = useState(false)
     let history = useHistory();
 
     useEffect(() => {
@@ -16,15 +18,20 @@ export default function Login() {
     }, [history])
     
     const CheckLogin = (e) => {
+        setLoading(true)
         e.preventDefault()
         axios.post('https://stormy-ridge-27884.herokuapp.com/login', {
             username: username,
             password: password
         }).then(res => {
+
             if (res.data.user) {
                 localStorage.setItem('token', JSON.stringify(res.data.token))
                 localStorage.setItem('user', JSON.stringify(res.data.user))
-                history.push("/dashboard");
+                setLoading(false)
+                setTimeout(() => {
+                    history.push("/dashboard");
+                }, 1000);
             }
         })
     }
@@ -51,7 +58,8 @@ export default function Login() {
                             type="submit"
                             id="login-button"
                             onClick={(e) => CheckLogin(e)}>
-                    Login
+                            Login
+                            {loading ? <i className="fa fa-spinner fa-spin"></i> : null}
             </button>
 		</form>
 	</div>

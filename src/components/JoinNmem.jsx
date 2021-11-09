@@ -45,7 +45,7 @@ function JoinNmem() {
                         {...register("uname", {
                             required: "Username is required",
                         })}
-                        className="text-left"
+                        className="text-left pl-2"
                         value={regsiterUsername}
                         onChange={(e) => setRegisterUsername(e.target.value)}
                     />
@@ -55,36 +55,7 @@ function JoinNmem() {
                     name="uname"
                     render={({ message }) => <p className="error">{message}</p>}
                 />
-                {/* <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        placeholder="password"
-                        {...register("pass", {
-                            required: "password is required",
-                        })}
-                        onChange={(e) => setRegisterPassword(e.target.value)}
-                    />
-                </Form.Group>
-                <ErrorMessage
-                    errors={errors}
-                    name="pass"
-                    render={({ message }) => <p className="error">{message}</p>}
-                /> */}
-                {/* <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>User Name</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Name"
-                        {...register("name", { required: "User Name is required" })}
-                        onChange={(e) => setRegisterName(e.target.value)}
-                    />
-                </Form.Group>
-                <ErrorMessage
-                    errors={errors}
-                    name="name"
-                    render={({ message }) => <p className="error">{message}</p>}
-                /> */}
+           
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Phone</Form.Label>
                     <Form.Control
@@ -101,7 +72,7 @@ function JoinNmem() {
                                 message: "Phone number maximum 10 character",
                             },
                         })}
-                        className="text-left"
+                        className="text-left pl-2"
                         value={regsiterPhone}
                         onChange={(e) => setRegisterPhone(e.target.value)}
                     />
@@ -119,7 +90,7 @@ function JoinNmem() {
                         {...register("email", {
                             required: "Email number is required",
                         })}
-                        className="text-left"
+                        className="text-left pl-2"
                         value={regsiterEmail}
                         onChange={(e) => setRegisterEmail(e.target.value)}
                     />
@@ -146,7 +117,7 @@ function JoinNmem() {
                                 message: "Addhar numbe maximum 16 character",
                             },
                         })}
-                        className="text-left"
+                        className="text-left pl-2"
                         value={regsiterAddar}
                         onChange={(e) => setRegisterAddar(e.target.value)}
                     />
@@ -164,7 +135,7 @@ function JoinNmem() {
                         {...register("head", {
                             required: "Head Member is required",
                         })}
-                        className="text-left"
+                        className="text-left pl-2"
                         value={regsiterHeadmem}
                         onChange={(e) => setRegisterHeadmem(e.target.value)}
                     />

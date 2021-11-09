@@ -14,7 +14,7 @@ function Activation() {
                         type="text"
                         name="id"
                         placeholder="Enter number of id "
-                        className="text-left"
+                        className="text-left pl-2"
                         value={noofid || 0}
                         onChange={(e) => setNumberOfId(e.target.value)}
                     />
@@ -24,7 +24,7 @@ function Activation() {
                     <Form.Control
                         type="number"
                         value={perid || 0}
-                        className="text-left"
+                        className="text-left pl-2"
                         onChange={(e) => setPerid(e.target.value)}
                     />
                 </Form.Group>
@@ -33,7 +33,7 @@ function Activation() {
                     <Form.Control
                         type="text"
                         name="famount"
-                        className="text-left"
+                        className="text-left pl-2"
                         value={noofid && perid ? noofid * perid : 0}
                     />
                 </Form.Group>

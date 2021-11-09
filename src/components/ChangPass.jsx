@@ -48,7 +48,7 @@ function ChangPass() {
                         {...register("cpassword", {
                             required: "Current password is required",
                         })}
-                        className="text-left"
+                        className="text-left pl-2"
                         value={currentPassword}
                         onChange={(e) => setCurrentPassword(e.target.value)}
                     />
@@ -70,7 +70,7 @@ function ChangPass() {
                                 message: "password maximum 12 character",
                             },
                         })}
-                        className="text-left"
+                        className="text-left pl-2"
                         value={newPassword}
                         onChange={(e) => setnewPassword(e.target.value)}
                     />
@@ -88,7 +88,7 @@ function ChangPass() {
                         {...register("compassword", {
                             required: "Re-enter your password",
                         })}
-                        className="text-left"
+                        className="text-left pl-2"
                         value={reEnterPassword}
                         onChange={(e) => setReEnterPassword(e.target.value)}
                     />

@@ -54,7 +54,7 @@ const UpdateProfile = () => {
                         {...register("bank-name", {
                             required: "Bank Name is required",
                         })}
-                        className="text-left"
+                        className="text-left pl-2"
                         value={regsiterBankname}
                         onChange={(e) => setRegisterBankname(e.target.value)}
                     />
@@ -72,7 +72,7 @@ const UpdateProfile = () => {
                         {...register("account", {
                             required: "Account no is required",
                         })}
-                        className="text-left"
+                        className="text-left pl-2"
                         value={regsiterAcountNo}
                         onChange={(e) => setRegisterAccountNo(e.target.value)}
                     />
@@ -90,7 +90,7 @@ const UpdateProfile = () => {
                         {...register("ifsc", {
                             required: "IFSC code is required",
                         })}
-                        className="text-left"
+                        className="text-left pl-2"
                         value={regsiterIfsc}
                         onChange={(e) => setRegisterIfsc(e.target.value)}
                     />
@@ -108,7 +108,7 @@ const UpdateProfile = () => {
                         {...register("holder-name", {
                             required: "Holder-name is required",
                         })}
-                        className="text-left"
+                        className="text-left pl-2"
                         value={regsiterHolder}
                         onChange={(e) => setRegisterHolder(e.target.value)}
                     />
@@ -126,7 +126,7 @@ const UpdateProfile = () => {
                         {...register("branch", {
                             required: "Branch name is required",
                         })}
-                        className="text-left"
+                        className="text-left pl-2"
                         value={regsiterBankbranch}
                         onChange={(e) => setRegisterBankbranch(e.target.value)}
                     />

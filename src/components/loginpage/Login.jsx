@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import "./login.css"
-import axios from 'axios'
-import fortawesome from '@fortawesome/fontawesome'
+import axios from 'axios';
 
 
 export default function Login() {
@@ -58,8 +57,7 @@ export default function Login() {
                             type="submit"
                             id="login-button"
                             onClick={(e) => CheckLogin(e)}>
-                            Login
-                            {loading ? <i className="fa fa-spinner fa-spin"></i> : null}
+                            {loading ? <i className="fa fa-spinner fa-spin"></i> : "Login"}
             </button>
 		</form>
 	</div>

@@ -28,18 +28,18 @@ function Widthdrawl() {
             <Form onSubmit={withdrawl}>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Available Balance</Form.Label>
-                    <Form.Control type="number" defaultValue={user.wallet.main_wallet} className="text-left"/>
+                    <Form.Control type="number" defaultValue={user.wallet.main_wallet} className="text-left pl-2"/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Withdrawal Amount</Form.Label>
-                    <Form.Control type="number" className="text-left"
+                    <Form.Control type="number" className="text-left pl-2"
                         value={0 || amount}
                         onChange={(e) => setAmount(e.target.value)}
                         />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Final Amount</Form.Label>
-                    <Form.Control type="number" className="text-left"
+                    <Form.Control type="number" className="text-left pl-2"
                         value={user.wallet.main_wallet - amount}
                         disabled
                     />

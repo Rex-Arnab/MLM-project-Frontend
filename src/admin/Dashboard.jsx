@@ -131,6 +131,7 @@ const Logout = () => {
     const history = useHistory()
     const handleLogout = () => {
         localStorage.removeItem('token')
+        localStorage.removeItem('user')
         history.push('/admin')
     }
     const [clicked, setClicked] = useState(false)

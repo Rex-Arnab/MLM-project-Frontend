@@ -33,6 +33,10 @@ export default function Login() {
                 }, 1000);
             }
         })
+            .catch(err => {
+                setLoading(false)
+                console.log(err)
+            })
     }
     return (
         <div>
@@ -56,7 +60,9 @@ export default function Login() {
 			<button
                             type="submit"
                             id="login-button"
-                            onClick={(e) => CheckLogin(e)}>
+                            onClick={(e) => CheckLogin(e)}
+                            className={loading ? "btn btn-black" : ""}
+                        >
                             {loading ? <i className="fa fa-spinner fa-spin"></i> : "Login"}
             </button>
 		</form>

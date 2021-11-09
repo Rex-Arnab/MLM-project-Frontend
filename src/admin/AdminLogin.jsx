@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom'
 export default function AdminLogin() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [loading, setLoading] = useState(false)
     const history = useHistory()
 
     const LoginCheck = (e) => {
@@ -17,7 +18,7 @@ export default function AdminLogin() {
         })
         .then(res => {
             localStorage.setItem('token', res.data.token)
-            localStorage.setItem('username', JSON.stringify(res.data.user))
+            localStorage.setItem('user', JSON.stringify(res.data.user))
             history.push('/admin/dashboard')
         })
         .catch(err => {
@@ -52,7 +53,12 @@ export default function AdminLogin() {
                                 <div className="col-lg-6 login-btm login-text">
                                 </div>
                                 <div className="col-lg-6 login-btm login-button">
-                                    <button type="submit" className="btn btn-outline-primary">LOGIN</button>
+                                        <button
+                                            type="submit"
+                                            className={ loading ? "btn btn-primary btn-block btn-lg btn-login" : "btn btn-primary btn-block btn-lg btn-login" }
+                                        >
+                                         { loading ? <i className="fa fa-spinner fa-spin"></i> : "LOGIN" }   
+                                    </button>
                                 </div>
                             </div>
                         </form>

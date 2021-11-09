@@ -45,6 +45,7 @@ function JoinNmem() {
                         {...register("uname", {
                             required: "Username is required",
                         })}
+                        className="text-left"
                         value={regsiterUsername}
                         onChange={(e) => setRegisterUsername(e.target.value)}
                     />
@@ -100,6 +101,7 @@ function JoinNmem() {
                                 message: "Phone number maximum 10 character",
                             },
                         })}
+                        className="text-left"
                         value={regsiterPhone}
                         onChange={(e) => setRegisterPhone(e.target.value)}
                     />
@@ -117,6 +119,7 @@ function JoinNmem() {
                         {...register("email", {
                             required: "Email number is required",
                         })}
+                        className="text-left"
                         value={regsiterEmail}
                         onChange={(e) => setRegisterEmail(e.target.value)}
                     />
@@ -143,6 +146,7 @@ function JoinNmem() {
                                 message: "Addhar numbe maximum 16 character",
                             },
                         })}
+                        className="text-left"
                         value={regsiterAddar}
                         onChange={(e) => setRegisterAddar(e.target.value)}
                     />
@@ -160,6 +164,7 @@ function JoinNmem() {
                         {...register("head", {
                             required: "Head Member is required",
                         })}
+                        className="text-left"
                         value={regsiterHeadmem}
                         onChange={(e) => setRegisterHeadmem(e.target.value)}
                     />

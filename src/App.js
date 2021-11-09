@@ -1,4 +1,3 @@
-import { createContext, useState } from "react";
 import './App.css';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
@@ -13,21 +12,16 @@ import Transfer from './components/Transfer';
 import ReferalIncome from './components/dashboard/ReferalIncome';
 import MyTeam from './components/MyTeam';
 import Login from './components/loginpage/Login';
-import Register from './components/registerpage/Register';
 
-const userContext = createContext();
 
 function App() {
-  const [user, setUser] = useState(null)
   return (
-    <userContext.Provider value={{ user: user, setUser: setUser}}>
     <Router
         basename={(window.location.hostname === 'localhost' || window.location.hostname === "mlm-project-frontend-xql9.vercel.app" ) ? '/' : 'MLM-project-Frontend/build/'}
       >
       <div>
         <Switch>
           <Route exact path="/" component={Login} />
-          <Route exact path="/register" component={Register} />
           <div className="App">
             <Sidebar />
             <Route exact path="/dashboard" component={Dashboard} />
@@ -45,11 +39,7 @@ function App() {
        </Switch>
       </div>
       </Router>
-      </userContext.Provider>
   );
 }
  
 export default App;
-export {
-  userContext
-}

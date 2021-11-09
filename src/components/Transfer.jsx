@@ -12,14 +12,16 @@ function Transfer() {
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Main Wallet Balance:</Form.Label>
-                    <Form.Control type="text" name="wallet" defaultValue={user.wallet.main_wallet} />
+                    <Form.Control type="text" name="wallet" defaultValue={user.wallet.main_wallet} className="text-left"/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Amount: </Form.Label>
-                    <Form.Control type="text" />
+                    <Form.Control type="text" className="text-left" />
                 </Form.Group>
 
-                <Button variant="success" type="submit">
+                <Button
+                    variant={user.wallet.main_wallet < 100 ? "danger" : "success"}
+                    type="submit">
                     Withdrawal
                 </Button>
             </Form>

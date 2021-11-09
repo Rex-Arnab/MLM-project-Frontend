@@ -1,10 +1,11 @@
 import { Button, Form } from "react-bootstrap";
 import Activation from "./Activation";
 import axios from "axios";
+import { useState } from "react";
 
 
 function Widthdrawl() {
-
+    const [amount, setAmount] = useState(0)
     const user = JSON.parse(localStorage.getItem("user"));
     const withdrawl = () => {
         axios({
@@ -27,17 +28,26 @@ function Widthdrawl() {
             <Form onSubmit={withdrawl}>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Available Balance</Form.Label>
-                    <Form.Control type="text" defaultValue={user.wallet.main_wallet} />
+                    <Form.Control type="number" defaultValue={user.wallet.main_wallet} className="text-left"/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Withdrawal Amount</Form.Label>
-                    <Form.Control type="text" />
+                    <Form.Control type="number" className="text-left"
+                        value={0 || amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                        />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Final Amount</Form.Label>
-                    <Form.Control type="text" />
+                    <Form.Control type="number" className="text-left"
+                        value={user.wallet.main_wallet - amount}
+                        disabled
+                    />
                 </Form.Group>
-                <Button variant="success" type="submit">
+                <Button
+                    variant={user.wallet.main_wallet - amount < 1 ? "danger" : "success"}
+                    disabled={user.wallet.main_wallet - amount < 1}
+                    type="submit">
                     Withdrawal
                 </Button>
             </Form>

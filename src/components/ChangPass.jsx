@@ -48,6 +48,7 @@ function ChangPass() {
                         {...register("cpassword", {
                             required: "Current password is required",
                         })}
+                        className="text-left"
                         value={currentPassword}
                         onChange={(e) => setCurrentPassword(e.target.value)}
                     />
@@ -69,6 +70,7 @@ function ChangPass() {
                                 message: "password maximum 12 character",
                             },
                         })}
+                        className="text-left"
                         value={newPassword}
                         onChange={(e) => setnewPassword(e.target.value)}
                     />
@@ -86,6 +88,7 @@ function ChangPass() {
                         {...register("compassword", {
                             required: "Re-enter your password",
                         })}
+                        className="text-left"
                         value={reEnterPassword}
                         onChange={(e) => setReEnterPassword(e.target.value)}
                     />
@@ -96,7 +99,9 @@ function ChangPass() {
                     render={({ message }) => <p className="error">{message}</p>}
                 />
 
-                <Button variant="primary" type="submit">
+                <Button
+                    variant={newPassword === reEnterPassword ? "primary" : "danger"}
+                    type="submit">
                     Submit
                 </Button>
             </Form>

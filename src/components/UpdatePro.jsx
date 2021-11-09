@@ -1,15 +1,26 @@
 import ChangPass from "./ChangPass";
 import { useState } from "react";
-import React from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import axios from "axios";
 function UpdatePro() {
+    return (
+        <div className="section">
+           <UpdateProfile />
+            <br />
+            <ChangPass />
+        </div>
+    );
+}
+
+
+const UpdateProfile = () => {
     const {
         register,
         formState: { errors },
     } = useForm();
+
     const [regsiterBankname, setRegisterBankname] = useState("");
     const [regsiterAcountNo, setRegisterAccountNo] = useState("");
     const [regsiterIfsc, setRegisterIfsc] = useState("");
@@ -32,12 +43,10 @@ function UpdatePro() {
             console.log(response);
         });
     };
-
     return (
-        <div className="section">
-            <h1 className="update-head">Update Your Bank Information</h1>
-            <Form onSubmit={update}>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form onSubmit={update}>
+             <h1 className="update-head">Update Your Bank Information</h1>
+                <Form.Group className="mb-3" controlId="formBankName">
                     <Form.Label>Bank Name</Form.Label>
                     <Form.Control
                         type="text"
@@ -45,6 +54,7 @@ function UpdatePro() {
                         {...register("bank-name", {
                             required: "Bank Name is required",
                         })}
+                        className="text-left"
                         value={regsiterBankname}
                         onChange={(e) => setRegisterBankname(e.target.value)}
                     />
@@ -54,7 +64,7 @@ function UpdatePro() {
                     name="bank-name"
                     render={({ message }) => <p className="error">{message}</p>}
                 />
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" controlId="formAccountNumber">
                     <Form.Label>Account Number</Form.Label>
                     <Form.Control
                         type="text"
@@ -62,6 +72,7 @@ function UpdatePro() {
                         {...register("account", {
                             required: "Account no is required",
                         })}
+                        className="text-left"
                         value={regsiterAcountNo}
                         onChange={(e) => setRegisterAccountNo(e.target.value)}
                     />
@@ -71,7 +82,7 @@ function UpdatePro() {
                     name="account"
                     render={({ message }) => <p className="error">{message}</p>}
                 />
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Group className="mb-3" controlId="formIFSCCode">
                     <Form.Label>IFSC Code</Form.Label>
                     <Form.Control
                         type="text"
@@ -79,6 +90,7 @@ function UpdatePro() {
                         {...register("ifsc", {
                             required: "IFSC code is required",
                         })}
+                        className="text-left"
                         value={regsiterIfsc}
                         onChange={(e) => setRegisterIfsc(e.target.value)}
                     />
@@ -88,7 +100,7 @@ function UpdatePro() {
                     name="ifsc"
                     render={({ message }) => <p className="error">{message}</p>}
                 />
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" controlId="formAccountHolderName">
                     <Form.Label>Account Holder Name</Form.Label>
                     <Form.Control
                         type="text"
@@ -96,6 +108,7 @@ function UpdatePro() {
                         {...register("holder-name", {
                             required: "Holder-name is required",
                         })}
+                        className="text-left"
                         value={regsiterHolder}
                         onChange={(e) => setRegisterHolder(e.target.value)}
                     />
@@ -105,7 +118,7 @@ function UpdatePro() {
                     name="holder-name"
                     render={({ message }) => <p className="error">{message}</p>}
                 />
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" controlId="formBankBranch">
                     <Form.Label>Bank Branch</Form.Label>
                     <Form.Control
                         type="text"
@@ -113,6 +126,7 @@ function UpdatePro() {
                         {...register("branch", {
                             required: "Branch name is required",
                         })}
+                        className="text-left"
                         value={regsiterBankbranch}
                         onChange={(e) => setRegisterBankbranch(e.target.value)}
                     />
@@ -126,10 +140,6 @@ function UpdatePro() {
                     Submit
                 </Button>
             </Form>
-            <br />
-            <ChangPass></ChangPass>
-        </div>
-    );
+    )
 }
-
 export default UpdatePro;

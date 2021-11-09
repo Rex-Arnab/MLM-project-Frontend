@@ -29,12 +29,14 @@ function Refferl() {
                 <div className="row  mb-3">
                     <div className="col-md-12">
                         <div className="refferl-link">
-                            <input type="text" defaultValue={ shareUrl } disabled className="mb-1"/>
+                            <input type="text" defaultValue={ shareUrl } className="mb-1 form-control" readOnly disabled/>
                             <CopyToClipboard
                                 text={shareUrl}
                                 onCopy={() => setCopied(true)}
                             >
-                                <button className="btn btn-primary">
+                                <button
+                                    className={`btn btn-primary ${copied ? "disabled" : ""}`}
+                                >
                                     {copied ? "Copied": "Copy Link"}
                                 </button>
                             </CopyToClipboard>

@@ -23,7 +23,7 @@ function Refferl() {
             <div className="container">
                 <div className="row">
                     <div className="col-md-12 font-weight-bold">
-                        <h4>Total Referrel Count: {user.referralCount}</h4>
+                        <h4>Total Referrel Count: { user.referals.length } </h4>
                     </div>
                 </div>
                 <div className="row  mb-3">

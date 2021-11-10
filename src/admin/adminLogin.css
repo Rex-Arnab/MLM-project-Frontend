@@ -5,11 +5,11 @@
 }
 
 .login-box {
-  margin-top: 75px;
   height: auto;
   background: #1a2226;
   text-align: center;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transform: translateY(10%);
 }
 
 .login-key {
@@ -37,7 +37,7 @@
   text-align: left;
 }
 
-input[type="text"] {
+.container-body input[type="text"] {
   background-color: #1a2226;
   border: none;
   border-bottom: 2px solid #0db8de;
@@ -50,7 +50,7 @@ input[type="text"] {
   color: #ecf0f5;
 }
 
-input[type="password"] {
+.container-body input[type="password"] {
   background-color: #1a2226;
   border: none;
   border-bottom: 2px solid #0db8de;
@@ -78,7 +78,7 @@ input[type="password"] {
   color: #ecf0f5;
 }
 
-input:focus {
+.container-body input:focus {
   outline: none;
   box-shadow: 0 0 0;
 }

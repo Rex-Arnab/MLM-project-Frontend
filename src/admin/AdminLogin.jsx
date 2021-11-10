@@ -26,7 +26,7 @@ export default function AdminLogin() {
         })
     }
     return (
-    <div className="container container-body">
+    <div className="container-fluid container-body">
         <div className="row">
             <div className="col-lg-3 col-md-2"></div>
             <div className="col-lg-6 col-md-8 login-box">

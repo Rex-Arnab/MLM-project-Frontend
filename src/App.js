@@ -21,7 +21,6 @@ function App() {
     <Router
         basename={(window.location.hostname === 'localhost' || window.location.hostname === "mlm-project-frontend-xql9.vercel.app" ) ? '/' : 'MLM-project-Frontend/build/'}
       >
-      <div>
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/admin/" component={AdminLogin} />
@@ -41,7 +40,6 @@ function App() {
             <Route exact path="/myteam" component={MyTeam} />
           </div>
        </Switch>
-      </div>
       </Router>
   );
 }

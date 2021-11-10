@@ -26,11 +26,14 @@ const UpdateProfile = () => {
     const [regsiterIfsc, setRegisterIfsc] = useState("");
     const [regsiterHolder, setRegisterHolder] = useState("");
     const [regsiterBankbranch, setRegisterBankbranch] = useState("");
+    const user = JSON.parse(localStorage.getItem("user"));
+
     const update = () => {
         axios({
             method: "POST",
             data: {
-                username: "Anupam Roy",
+                username: user.username,
+                token: JSON.parse(localStorage.getItem("token")),
                 bank_name: regsiterBankname,
                 account_number: regsiterAcountNo,
                 account_holder_name: regsiterHolder,

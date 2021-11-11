@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
 function MyTeam({ team, setTeam }) {
@@ -18,7 +18,7 @@ function MyTeam({ team, setTeam }) {
                     console.log(err);
                 });
         }
-    }, [user.referals]);
+    }, [team.length]);
         return (
         <div className="section">
                 <h1>This My team </h1>

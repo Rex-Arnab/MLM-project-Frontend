@@ -130,6 +130,7 @@ const TransactionHistory = () => {
 const Logout = () => {
     const history = useHistory()
     const handleLogout = () => {
+        setClicked(false)
         localStorage.removeItem('token')
         localStorage.removeItem('user')
         history.push('/admin')
@@ -141,13 +142,14 @@ const Logout = () => {
             <button
                 onClick={() => {
                     setClicked(true)
-                    // delay for 2 seconds
                     setTimeout(() => {
                         handleLogout()
-                    }, 2000)
+                    }, 800)
                 }}
                 className={clicked ? 'btn btn-danger' : 'btn btn-primary'}
-            >Logout</button>
+            >
+                {clicked ? <span>Logging out... <i class="fas fa-spinner fa-spin"></i></span> : 'Logout'}
+            </button>
         </div>
     )
 }

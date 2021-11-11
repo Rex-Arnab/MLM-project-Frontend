@@ -1,7 +1,8 @@
 import './App.css';
+import { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
-import { BrowserRouter as Router , Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Refferl from './components/Refferl';
 import Report from './components/Report';
 import Logout from './components/Logout';
@@ -17,10 +18,9 @@ import AdminDashboard from './admin/Dashboard';
 
 
 function App() {
+  const [team, setTeam] = useState([]);
   return (
-    <Router
-        basename={(window.location.hostname === 'localhost' || window.location.hostname === "mlm-project-frontend-xql9.vercel.app" ) ? '/' : 'MLM-project-Frontend/build/'}
-      >
+    <Router>
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/admin/" component={AdminLogin} />
@@ -37,7 +37,7 @@ function App() {
             <Route exact path="/update" component={UpdatePro} />
             <Route exact path="/transfer" component={Transfer} />
             <Route exact path="/referalincome" component={ReferalIncome} />
-            <Route exact path="/myteam" component={MyTeam} />
+          <Route exact path="/myteam" component={() => <MyTeam team={team} setTeam={ setTeam} />} />
           </div>
        </Switch>
       </Router>

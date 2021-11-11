@@ -1,7 +1,7 @@
 import { Tab, Row, Col, Nav, Table } from 'react-bootstrap'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function AdminDashboard() {
     return (
@@ -128,11 +128,11 @@ const TransactionHistory = () => {
 }
 
 const Logout = () => {
-    const history = useHistory()
+    const navigate = useNavigate()
     const handleLogout = () => {
         localStorage.removeItem('token')
         localStorage.removeItem('user')
-        history.push('/admin')
+        navigate('/admin')
     }
     const [clicked, setClicked] = useState(false)
     return (

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "./login.css"
 import axios from 'axios';
 
@@ -8,13 +8,13 @@ export default function Login() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
-    let history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (localStorage.getItem("user")) {
-            history.push("/dashboard")
+            navigate("/user/dashboard")
         }
-    }, [history])
+    }, [navigate])
     
     const CheckLogin = (e) => {
         setLoading(true)
@@ -27,9 +27,10 @@ export default function Login() {
             if (res.data.user) {
                 localStorage.setItem('token', JSON.stringify(res.data.token))
                 localStorage.setItem('user', JSON.stringify(res.data.user))
+                console.log(JSON.stringify(res.data.user))
                 setLoading(false)
                 setTimeout(() => {
-                    history.push("/dashboard");
+                    navigate("/dashboard");
                 }, 1000);
             }
         })

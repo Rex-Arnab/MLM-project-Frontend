@@ -12,8 +12,8 @@ const Link = ({ to, title, icons }) => {
     return (
           <NavLink
             exact
-            to={"/" + to}
-            activeClassName="activeClicked"
+            to={"/user/" + to}
+            className={(navData) => navData.isActive ? "activeClicked" : ""}
         >
             <CDBSidebarMenuItem icon={ icons }>
                 {title}

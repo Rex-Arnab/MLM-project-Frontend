@@ -1,28 +1,25 @@
 import axios from 'axios'
 import { useState } from 'react'
 import "./adminLogin.css"
-import { useNavigate } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 export default function AdminLogin() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
-    const navigate = useNavigate()
+    const history = useHistory()
 
     const LoginCheck = (e) => {
         e.preventDefault();
-        setLoading(true)
+
         axios.post('https://stormy-ridge-27884.herokuapp.com/admin/login', {
         username: username,
         password: password
         })
-            .then(res => {
-            setLoading(false)
+        .then(res => {
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('user', JSON.stringify(res.data.user))
-            setTimeout(() => {
-                    navigate('/admin/dashboard')
-            }, 500)
+            history.push('/admin/dashboard')
         })
         .catch(err => {
             console.log(err)

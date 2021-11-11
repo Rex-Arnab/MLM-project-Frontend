@@ -1,16 +1,15 @@
 import { useEffect } from "react";
 import "../App.css";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function Dashboard() {
     const user = JSON.parse(localStorage.getItem("user"));
-    const navigate = useNavigate();
+    const history = useHistory();
     useEffect(() => {
-        console.log("IN DASHBOARD")
         if (!user) {
-            navigate("/user/logout");
+            history.push("/logout");
         }
-    }, [navigate, user]);
+    }, [history, user]);
     return (
         <div>
             <div className="d-flex flex-column">

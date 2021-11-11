@@ -1,24 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
-function MyTeam({ team, setTeam }) {
+function MyTeam() {
     const user = JSON.parse(localStorage.getItem("user"));
-    
+    const [team, setTeam] = useState([]);
 
     useEffect(() => {
-        if (team.length === 0) {
-            axios.post("https://stormy-ridge-27884.herokuapp.com/getUsers", {
-                token: JSON.parse(localStorage.getItem("token")),
-                userIds: user.referals,
+        axios.post("https://stormy-ridge-27884.herokuapp.com/getUsers", {
+            token: JSON.parse(localStorage.getItem("token")),
+            userIds: user.referals,
+        })
+            .then(res => {
+                setTeam(res.data);
             })
-                .then(res => {
-                    setTeam(res.data);
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-        }
-    }, [team.length]);
+            .catch(err => {
+                console.log(err);
+            });
+    }, [user]);
         return (
         <div className="section">
                 <h1>This My team </h1>

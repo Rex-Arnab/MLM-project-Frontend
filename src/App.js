@@ -31,7 +31,7 @@ function App() {
             <Route exact path="/dashboard/refarel-income" component={ReferalIncome} />
             <Route exact path="/referrals" component={Refferl} />
             <Route exact path="/report" component={Report} />
-            <Route exact path="/logout" component={Logout} />
+            <Route exact path="/logout" component={() => <Logout setTeam={setTeam} />} />
             <Route exact path="/join" component={JoinNmem} />
             <Route exact path="/widthdrawl" component={Widthdrawl} />
             <Route exact path="/update" component={UpdatePro} />

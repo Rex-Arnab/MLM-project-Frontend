@@ -11,15 +11,18 @@ export default function AdminLogin() {
 
     const LoginCheck = (e) => {
         e.preventDefault();
-
+        setLoading(true)
         axios.post('https://stormy-ridge-27884.herokuapp.com/admin/login', {
         username: username,
         password: password
         })
-        .then(res => {
+            .then(res => {
+            setLoading(false)
             localStorage.setItem('token', res.data.token)
             localStorage.setItem('user', JSON.stringify(res.data.user))
-            history.push('/admin/dashboard')
+            setTimeout(() => {
+                history.push('/admin/dashboard')
+            }, 300);
         })
         .catch(err => {
             console.log(err)

@@ -16,7 +16,7 @@ import "../App.css";
 function Refferl() {
     const user = JSON.parse(localStorage.getItem("user"));
     const [copied, setCopied] = useState(false);
-    const shareUrl = user.referralCode; // TODO: Give Your Personalised URL To Share
+    const shareUrl = `https://${window.location.hostname}/referal/${user.referralCode}` 
 
     return (
         <div className="section">

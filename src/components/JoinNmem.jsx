@@ -9,17 +9,18 @@ function JoinNmem() {
         formState: { errors },
     } = useForm();
     const [regsiterUsername, setRegisterUsername] = useState("");
+    const [regsiterName, setRegisterName] = useState("");
     const [regsiterPhone, setRegisterPhone] = useState("");
     const [regsiterEmail, setRegisterEmail] = useState("");
     const [regsiterAddar, setRegisterAddar] = useState("");
     const [regsiterHeadmem, setRegisterHeadmem] = useState("");
 
-    const joinMem = () => {
+    const joinMem = (e) => {
+        e.preventDefault();
         axios({
             method: "POST",
             data: {
                 username: regsiterUsername,
-                password: "arnab123",
                 phone: regsiterPhone,
                 email: regsiterEmail,
                 aadhar: regsiterAddar,
@@ -48,6 +49,24 @@ function JoinNmem() {
                         className="text-left pl-2"
                         value={regsiterUsername}
                         onChange={(e) => setRegisterUsername(e.target.value)}
+                    />
+                </Form.Group>
+                <ErrorMessage
+                    errors={errors}
+                    name="uname"
+                    render={({ message }) => <p className="error">{message}</p>}
+                />
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="Name"
+                        {...register("uname", {
+                            required: "Name is required",
+                        })}
+                        className="text-left pl-2"
+                        value={regsiterName}
+                        onChange={(e) => setRegisterName(e.target.value)}
                     />
                 </Form.Group>
                 <ErrorMessage

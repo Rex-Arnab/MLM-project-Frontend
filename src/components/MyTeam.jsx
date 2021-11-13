@@ -27,19 +27,17 @@ function MyTeam({team, setTeam}) {
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Referals</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Join Date</th>
                         </tr>
                     </thead>
                     <tbody>
                         {team.map((user, index) => (
                             <tr key={user._id}>
                                 <th scope="row">{index + 1}</th>
-                                <td>{user.username}</td>
-                                <td>{user.email}</td>
-                                <td>{user.phone}</td>
-                                <td>{user.referals.length}</td>
+                                <td>{user.name}</td>
+                                <td>{user.uid}</td>
+                                <td>{new Date(user.created_at).toLocaleDateString()}</td>
                             </tr>
                         ))}
                     </tbody>

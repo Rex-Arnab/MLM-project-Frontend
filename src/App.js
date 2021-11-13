@@ -14,6 +14,7 @@ import MyTeam from './components/MyTeam';
 import Login from './components/loginpage/Login';
 import AdminLogin from './admin/AdminLogin';
 import AdminDashboard from './admin/Dashboard';
+import Referal from './components/Referal';
 
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
           <Route exact path="/" component={Login} />
           <Route exact path="/admin/" component={AdminLogin} />
           <Route exact path="/admin/dashboard" component={AdminDashboard} />
+          <Route exact path="/referal/:ref_id" component={Referal} />
+          <Route exact path="/referal" component={() => <p className="d-flex alert alert-danger">No Referral ID Found</p>} />
           <div className="App">
             <Sidebar />
             <Route exact path="/dashboard" component={Dashboard} />

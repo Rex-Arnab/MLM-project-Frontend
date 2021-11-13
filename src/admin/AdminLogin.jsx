@@ -7,6 +7,7 @@ export default function AdminLogin() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(false)
     const history = useHistory()
 
     const LoginCheck = (e) => {
@@ -25,6 +26,11 @@ export default function AdminLogin() {
             }, 300);
         })
         .catch(err => {
+            setLoading(false)
+            setError(true)
+            setTimeout(() => {
+                setError(false)
+            }, 2000);
             console.log(err)
         })
     }
@@ -38,7 +44,12 @@ export default function AdminLogin() {
                 </div>
                 <div className="col-lg-12 login-title">
                     ADMIN PANEL
-                </div>
+                    </div>
+                    
+                    <div className="alert alert-danger" role="alert" style={{display: error ? "block" : "none"}}>
+                        Invalid Username or Password
+                    </div>
+
 
                 <div className="col-lg-12 login-form">
                     <div className="col-lg-12 login-form">
@@ -53,12 +64,10 @@ export default function AdminLogin() {
                             </div>
 
                             <div className="col-lg-12 loginbttm">
-                                <div className="col-lg-6 login-btm login-text">
-                                </div>
-                                <div className="col-lg-6 login-btm login-button">
+                                <div className="col-lg-6 offset-lg-3 login-btm login-button">
                                         <button
                                             type="submit"
-                                            className={ loading ? "btn btn-primary btn-block btn-lg btn-login" : "btn btn-primary btn-block btn-lg btn-login" }
+                                            className={ loading ? "btn btn-warning btn-block btn-lg btn-login" : "btn btn-primary btn-block btn-lg btn-login" }
                                         >
                                          { loading ? <i className="fa fa-spinner fa-spin"></i> : "LOGIN" }   
                                     </button>

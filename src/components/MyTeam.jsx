@@ -18,7 +18,7 @@ function MyTeam({team, setTeam}) {
                 console.log(err);
             });
         }
-    }, [user.referals.length]);
+    }, [team, setTeam, user]);
         return (
         <div className="section">
                 <h1>This My team </h1>

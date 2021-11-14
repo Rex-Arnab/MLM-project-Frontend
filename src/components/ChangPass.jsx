@@ -13,13 +13,14 @@ function ChangPass() {
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setnewPassword] = useState("");
     const [reEnterPassword, setReEnterPassword] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const changePassword = () => {
         if (newPassword === reEnterPassword) {
             axios({
                 method: "POST",
                 data: {
-                    username: "Arnab Biswas",
+                    token: JSON.parse(localStorage.getItem("token")),
                     old_password: currentPassword,
                     new_password: newPassword,
                 },
@@ -27,8 +28,14 @@ function ChangPass() {
                 url: "https://stormy-ridge-27884.herokuapp.com/change_password",
             }).then((response) => {
                 console.log(response);
+                if (response.status === 200) {
+                    alert("Password changed successfully");
+                }
+                setLoading(false);
+            }).catch((error) => {
+                console.log(error);
+                setLoading(false);
             });
-            alert("Password change Sucessfull");
         } else {
             alert("password not match");
         }
@@ -40,7 +47,7 @@ function ChangPass() {
         <div className="change-container">
             <h1 className="change-head">Change Password</h1>
             <Form onSubmit={handleSubmit(onSubmit)}>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" controlId="formCurrentPassword">
                     <Form.Label>Current Password</Form.Label>
                     <Form.Control
                         type="text"
@@ -48,7 +55,7 @@ function ChangPass() {
                         {...register("cpassword", {
                             required: "Current password is required",
                         })}
-                        className="text-left pl-2"
+                        className="text-left pl-2 w-100"
                         value={currentPassword}
                         onChange={(e) => setCurrentPassword(e.target.value)}
                     />
@@ -58,7 +65,7 @@ function ChangPass() {
                     name="cpassword"
                     render={({ message }) => <p className="error">{message}</p>}
                 />
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" controlId="formNewPassword">
                     <Form.Label>New Password</Form.Label>
                     <Form.Control
                         type="text"
@@ -70,7 +77,7 @@ function ChangPass() {
                                 message: "password maximum 12 character",
                             },
                         })}
-                        className="text-left pl-2"
+                        className="text-left pl-2 w-100"
                         value={newPassword}
                         onChange={(e) => setnewPassword(e.target.value)}
                     />
@@ -80,7 +87,7 @@ function ChangPass() {
                     name="npassword"
                     render={({ message }) => <p className="error">{message}</p>}
                 />
-                <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Group className="mb-3" controlId="formConfirmPassword">
                     <Form.Label>Comfirm Password</Form.Label>
                     <Form.Control
                         type="password"
@@ -88,7 +95,7 @@ function ChangPass() {
                         {...register("compassword", {
                             required: "Re-enter your password",
                         })}
-                        className="text-left pl-2"
+                        className="text-left pl-2 w-100"
                         value={reEnterPassword}
                         onChange={(e) => setReEnterPassword(e.target.value)}
                     />
@@ -101,8 +108,10 @@ function ChangPass() {
 
                 <Button
                     variant={newPassword === reEnterPassword ? "primary" : "danger"}
-                    type="submit">
-                    Submit
+                    type="submit"
+                    onClick={() => setLoading(true)}
+                >
+                    {loading ? "Loading..." : (newPassword === reEnterPassword ? "Change Password" : "Password not match")}
                 </Button>
             </Form>
         </div>

@@ -34,6 +34,9 @@ export default function Login() {
             }
         })
             .catch(err => {
+                if (err.response.status === 401) {
+                    alert("Invalid username or password")
+                }
                 setLoading(false)
                 console.log(err)
             })

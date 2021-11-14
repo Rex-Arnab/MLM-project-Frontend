@@ -14,6 +14,7 @@ function JoinNmem() {
     const [regsiterEmail, setRegisterEmail] = useState("");
     const [regsiterAddar, setRegisterAddar] = useState("");
     const [regsiterHeadmem, setRegisterHeadmem] = useState("");
+    const user = JSON.parse(localStorage.getItem("user"));
 
     const joinMem = (e) => {
         e.preventDefault();
@@ -21,6 +22,7 @@ function JoinNmem() {
             method: "POST",
             data: {
                 username: regsiterUsername,
+                name: regsiterName,
                 phone: regsiterPhone,
                 email: regsiterEmail,
                 aadhar: regsiterAddar,
@@ -35,10 +37,10 @@ function JoinNmem() {
 
     return (
         <div className="section">
-            {/*  <pre>{JSON.stringify(userInfo, undefined, 2)}</pre> */}
+            <h2>Available IDs : {user.id_count}</h2>
             <h1 className="join-head">Join Members</h1>
             <Form onSubmit={joinMem}>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" controlId="fromRegisterUsername">
                     <Form.Label>Username</Form.Label>
                     <Form.Control
                         type="text"
@@ -56,12 +58,12 @@ function JoinNmem() {
                     name="uname"
                     render={({ message }) => <p className="error">{message}</p>}
                 />
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" controlId="fromRegisterName">
                     <Form.Label>Name</Form.Label>
                     <Form.Control
                         type="text"
                         placeholder="Name"
-                        {...register("uname", {
+                        {...register("name", {
                             required: "Name is required",
                         })}
                         className="text-left pl-2"
@@ -71,11 +73,11 @@ function JoinNmem() {
                 </Form.Group>
                 <ErrorMessage
                     errors={errors}
-                    name="uname"
+                    name="name"
                     render={({ message }) => <p className="error">{message}</p>}
                 />
            
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" controlId="fromRegisterPhone">
                     <Form.Label>Phone</Form.Label>
                     <Form.Control
                         type="text"
@@ -119,7 +121,7 @@ function JoinNmem() {
                     name="email"
                     render={({ message }) => <p className="error">{message}</p>}
                 />
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" controlId="formRegisterAadhar">
                     <Form.Label>Aadhar No</Form.Label>
                     <Form.Control
                         type="text"
@@ -146,7 +148,7 @@ function JoinNmem() {
                     name="addhar"
                     render={({ message }) => <p className="error">{message}</p>}
                 />
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" controlId="fromRegisterHeadMember">
                     <Form.Label>Head Member</Form.Label>
                     <Form.Control
                         type="text"

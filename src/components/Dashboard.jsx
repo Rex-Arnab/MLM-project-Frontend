@@ -1,6 +1,7 @@
-import { useEffect, Fragment } from "react";
+import { useEffect } from "react";
 import "../App.css";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 function Dashboard() {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -10,6 +11,12 @@ function Dashboard() {
         if (!user) {
             history.push("/logout");
         }
+        axios.post("https://stormy-ridge-27884.herokuapp.com/getUser", { token: localStorage.getItem("token") })
+            .then(res => {
+                if (res.data.status === "success") {
+                    localStorage.setItem("user", JSON.stringify(res.data.data));
+                }
+            })
     }, [history, user]);
     return (
         <div className="section">
@@ -30,38 +37,38 @@ function Dashboard() {
                 <div className="row">
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
                         <span>Referal Income</span>
-                        <h5 className="text-black">100</h5>
+                        <h5 className="text-black">0</h5>
                     </div>
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
                         <span>Joing Income</span>
-                        <h5 className="text-black">100</h5>
+                        <h5 className="text-black">0</h5>
                     </div>
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
                         <span>Level Income</span>
-                        <h5 className="text-black">100</h5>
+                        <h5 className="text-black">0</h5>
                     </div>
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
                         <span>Total Income</span>
-                        <h5 className="text-black">100</h5>
+                        <h5 className="text-black">0</h5>
                     </div>
                 </div>
 
                  <div className="row">
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
                         <span>Main Income</span>
-                        <h5 className="text-black">100</h5>
+                        <h5 className="text-black">{user.wallet.main_wallet}</h5>
                     </div>
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
                         <span>Active Income</span>
-                        <h5 className="text-black">100</h5>
+                        <h5 className="text-black">0</h5>
                     </div>
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
                         <span>Offer Income</span>
-                        <h5 className="text-black">100</h5>
+                        <h5 className="text-black">0</h5>
                     </div>
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
                         <span>Global Income</span>
-                        <h5 className="text-black">100</h5>
+                        <h5 className="text-black">0</h5>
                     </div>
                 </div>
             </div>

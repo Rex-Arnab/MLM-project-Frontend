@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import axios from "axios";
+import Razorpay from "./Razorpay"
+
 function JoinNmem() {
     const {
         register,
@@ -16,31 +17,12 @@ function JoinNmem() {
     const [regsiterHeadmem, setRegisterHeadmem] = useState("");
     const user = JSON.parse(localStorage.getItem("user"));
 
-    const joinMem = (e) => {
-        e.preventDefault();
-        axios({
-            method: "POST",
-            data: {
-                token: localStorage.getItem("token"),
-                username: regsiterUsername,
-                name: regsiterName,
-                phone: regsiterPhone,
-                email: regsiterEmail,
-                aadhar: regsiterAddar,
-                head: regsiterHeadmem,
-            },
-            withCredentials: true,
-            url: "https://stormy-ridge-27884.herokuapp.com/register",
-        }).then((response) => {
-            console.log(response);
-        });
-    };
 
     return (
         <div className="section">
             <h2>Available IDs : {user.id_count}</h2>
             <h1 className="join-head">Join Members</h1>
-            <Form onSubmit={joinMem}>
+            <Form>
                 <Form.Group className="mb-3" controlId="fromRegisterUsername">
                     <Form.Label>Username</Form.Label>
                     <Form.Control
@@ -49,7 +31,7 @@ function JoinNmem() {
                         {...register("uname", {
                             required: "Username is required",
                         })}
-                        className="text-left pl-2"
+                        className="text-left pl-2 w-100"
                         value={regsiterUsername}
                         onChange={(e) => setRegisterUsername(e.target.value)}
                     />
@@ -67,7 +49,7 @@ function JoinNmem() {
                         {...register("name", {
                             required: "Name is required",
                         })}
-                        className="text-left pl-2"
+                        className="text-left pl-2 w-100"
                         value={regsiterName}
                         onChange={(e) => setRegisterName(e.target.value)}
                     />
@@ -94,7 +76,7 @@ function JoinNmem() {
                                 message: "Phone number maximum 10 character",
                             },
                         })}
-                        className="text-left pl-2"
+                        className="text-left pl-2 w-100"
                         value={regsiterPhone}
                         onChange={(e) => setRegisterPhone(e.target.value)}
                     />
@@ -112,7 +94,7 @@ function JoinNmem() {
                         {...register("email", {
                             required: "Email number is required",
                         })}
-                        className="text-left pl-2"
+                        className="text-left pl-2 w-100"
                         value={regsiterEmail}
                         onChange={(e) => setRegisterEmail(e.target.value)}
                     />
@@ -139,7 +121,7 @@ function JoinNmem() {
                                 message: "Addhar numbe maximum 16 character",
                             },
                         })}
-                        className="text-left pl-2"
+                        className="text-left pl-2 w-100"
                         value={regsiterAddar}
                         onChange={(e) => setRegisterAddar(e.target.value)}
                     />
@@ -157,7 +139,7 @@ function JoinNmem() {
                         {...register("head", {
                             required: "Head Member is required",
                         })}
-                        className="text-left pl-2"
+                        className="text-left pl-2 w-100"
                         value={regsiterHeadmem}
                         onChange={(e) => setRegisterHeadmem(e.target.value)}
                     />
@@ -167,9 +149,24 @@ function JoinNmem() {
                     name="head"
                     render={({ message }) => <p className="error">{message}</p>}
                 />
-                <Button variant="primary" type="submit">
-                    Submit
+                <div className="w-50 paySection">
+                     <Razorpay amount={localStorage.getItem("id_price")} userDetail={{
+                            uname: regsiterUsername,
+                            name: regsiterName,
+                            phone: regsiterPhone,
+                            email: regsiterEmail,
+                            addhar: regsiterAddar,
+                            head: regsiterHeadmem
+                        }} />
+                    <span className="mr-2">OR</span>
+                    <Button
+                        variant="primary"
+                        type="submit"
+                        disabled={user.id_count === 0}
+                    >
+                    Pay with Activation wallet (Remaining IDs {user.id_count})
                 </Button>
+               </div>
             </Form>
         </div>
     );

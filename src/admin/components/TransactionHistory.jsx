@@ -1,6 +1,28 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Table } from 'react-bootstrap'
+import DataTable from 'react-data-table-component';
+
+
+const columns = [
+    {
+        name: 'amount',
+        selector: row => row.amount,
+        sortable: true,
+    },
+    {
+        name: 'type',
+        selector: row => row.type,
+        sortable: true,
+    },
+    {
+        name: 'created_at',
+        selector: row => new Date(row.created_at).toLocaleDateString(),
+        sortable: true,
+    },
+];
+
+
 
 const TransactionHistory = () => {
     const [transactions, setTransactions] = useState([])
@@ -14,33 +36,16 @@ const TransactionHistory = () => {
             })
     }, [])
     return (
-        <div>
+        <div className="section">
             <h1>Transaction History</h1>
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Type</th>
-                        <th>Amount</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {transactions.map((transaction, index) => {
-                        return (
-                            <tr key={index}>
-                                <td>{index+1}</td>
-                                <td>{transaction.type}</td>
-                                <td>{transaction.amount}</td>
-                                <td>{new Date(transaction.created_at).toLocaleDateString()}</td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </Table>
-            
+            <DataTable
+                columns={columns}
+                data={transactions}
+                pagination
+                paginationPerPage={10}
+            />
         </div>
-    )
+    );
 }
 
 export default TransactionHistory;

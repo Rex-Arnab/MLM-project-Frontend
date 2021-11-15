@@ -45,3 +45,9 @@ div.section {
   border-radius: 20px;
   background-color: bisque;
 }
+
+.paySection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

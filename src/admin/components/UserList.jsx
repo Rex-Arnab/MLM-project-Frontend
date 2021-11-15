@@ -16,7 +16,7 @@ const UserList = () => {
 
      const handleSubmit = (e, uid , username, password, email, phone, head_member, bank_name, account_number, account_holder_name, bank_branch, ifsc_code, is_admin, is_bank_locked, id_count, main_wallet, activation_wallet) => {
         e.preventDefault()
-        axios.put(`http://localhost:5000/update_user/${uid}`, {
+        axios.put(`http://stormy-ridge-27884.herokuapp.com/update_user/${uid}`, {
             token: JSON.parse(localStorage.getItem('token')),
             username,
             password,

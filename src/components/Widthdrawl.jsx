@@ -81,7 +81,7 @@ function Widthdrawl() {
                         disabled
                     />
                 </div>
-
+                
                 <button
                     type="submit"
                     className={user.wallet.main_wallet - amount >= 0 ? "btn btn-primary" : "btn btn-primary disabled"}

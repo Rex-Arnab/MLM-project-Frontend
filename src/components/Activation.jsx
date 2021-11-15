@@ -10,7 +10,7 @@ function Activation() {
 
     const buyActivationWalletRecharge = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:5000/buy_ids", {
+        axios.post("http://stormy-ridge-27884.herokuapp.com/buy_ids", {
             token: localStorage.getItem("token"),
             no_of_ids: parseInt(noofid),
             amount: parseInt(perid * noofid)

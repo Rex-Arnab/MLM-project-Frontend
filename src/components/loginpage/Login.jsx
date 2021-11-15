@@ -23,10 +23,13 @@ export default function Login() {
             username: username,
             password: password
         }).then(res => {
-
             if (res.data.user) {
-                localStorage.setItem('token', JSON.stringify(res.data.token))
+                console.log(res.data)
+                localStorage.setItem('token', res.data.token)
                 localStorage.setItem('user', JSON.stringify(res.data.user))
+                localStorage.setItem('id_price', res.data.config.id_price)
+                localStorage.setItem('promotion', res.data.config.promotion)
+
                 setLoading(false)
                 setTimeout(() => {
                     history.push("/dashboard");

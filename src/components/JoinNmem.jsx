@@ -21,6 +21,7 @@ function JoinNmem() {
         axios({
             method: "POST",
             data: {
+                token: localStorage.getItem("token"),
                 username: regsiterUsername,
                 name: regsiterName,
                 phone: regsiterPhone,

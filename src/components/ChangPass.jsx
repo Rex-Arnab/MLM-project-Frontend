@@ -20,7 +20,7 @@ function ChangPass() {
             axios({
                 method: "POST",
                 data: {
-                    token: JSON.parse(localStorage.getItem("token")),
+                    token: localStorage.getItem("token"),
                     old_password: currentPassword,
                     new_password: newPassword,
                 },

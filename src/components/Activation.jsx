@@ -4,14 +4,14 @@ import { Button, Form } from "react-bootstrap";
 function Activation() {
     const user = JSON.parse(localStorage.getItem("user"));
     const [noofid, setNumberOfId] = useState(0);
-    const [perid, setPerid] = useState(10);
+    const [perid] = useState(localStorage.getItem("id_price"));
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
     const buyActivationWalletRecharge = (e) => {
         e.preventDefault();
         axios.post("http://localhost:5000/buy_ids", {
-            token: JSON.parse(localStorage.getItem("token")),
+            token: localStorage.getItem("token"),
             no_of_ids: parseInt(noofid),
             amount: parseInt(perid * noofid)
         }).then(res => {
@@ -32,7 +32,7 @@ function Activation() {
                 className={`text-center ${error ? "text-danger" : "text-primary"}`}
                 
             >
-            {user.wallet.activation_wallet > 0 ? "Your activation wallet balance is " + user.wallet .activation_wallet: "You don't have any wallet balance"}
+            {user.wallet.activation_wallet > 0 ? "Your activation wallet balance is " + user.wallet.activation_wallet: "You don't have any wallet balance"}
             </h2>
             <h1 className="active-head">Buy ID's From Activation Wallet</h1>
             <Form onSubmit={buyActivationWalletRecharge}>

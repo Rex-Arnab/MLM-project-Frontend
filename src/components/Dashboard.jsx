@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, Fragment } from "react";
 import "../App.css";
 import { useHistory } from "react-router-dom";
 
 function Dashboard() {
     const user = JSON.parse(localStorage.getItem("user"));
+    const promotion = localStorage.getItem("promotion");
     const history = useHistory();
     useEffect(() => {
         if (!user) {
@@ -11,59 +12,61 @@ function Dashboard() {
         }
     }, [history, user]);
     return (
-        <div>
-            <div className="d-flex flex-column">
-                <div className="p-2">
-                    <h5 className="text-black">Name: { user.username }</h5>
-                    <h5 className="text-black">ID: { user.uid} </h5>
-                    <h5 className="text-black">Joining Date:{ new Date(user.created_at).toLocaleDateString()}</h5>
-                </div>
-            </div>
+        <div className="section">
+   
+            <nav className="navbar text-white bg-dark d-flex justify-content-between flex-s-column flex-md-row">
+                <div className="bg-danger p-2">ID : { user.uid }</div>
+                <div className="p-2">{ user.username }</div>
+                <div className="p-2">{ new Date(user.created_at).toLocaleDateString() }</div>
+            </nav>
             
-            <div className="d-flex flex-column">
-                <div className="text-center">
-                    <h4>
-                        <b className="text-black">Offers Provided By Company</b>
-                    </h4>
+            {promotion.length !== 0 && (
+                <div className="alert alert-warning alert-dismissible fade show" role="alert">
+                    <h4 className="alert-heading text-center">{promotion}</h4>
+                </div>
+            )}
+
+            <div className="container" style={{padding: "1rem 0"}}>
+                <div className="row">
+                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
+                        <span>Referal Income</span>
+                        <h5 className="text-black">100</h5>
+                    </div>
+                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
+                        <span>Joing Income</span>
+                        <h5 className="text-black">100</h5>
+                    </div>
+                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
+                        <span>Level Income</span>
+                        <h5 className="text-black">100</h5>
+                    </div>
+                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
+                        <span>Total Income</span>
+                        <h5 className="text-black">100</h5>
+                    </div>
+                </div>
+
+                 <div className="row">
+                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
+                        <span>Main Income</span>
+                        <h5 className="text-black">100</h5>
+                    </div>
+                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
+                        <span>Active Income</span>
+                        <h5 className="text-black">100</h5>
+                    </div>
+                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
+                        <span>Offer Income</span>
+                        <h5 className="text-black">100</h5>
+                    </div>
+                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
+                        <span>Global Income</span>
+                        <h5 className="text-black">100</h5>
+                    </div>
                 </div>
             </div>
 
-            <div className="container">
-                <div className="row">
-                    <div className="col-sm">
-                        <div className="grid-container d-flex flex-wrap justify-content-center">
-                            <div className="grid-item my-3 py-3 cardRem">
-                                Refarel Income
-                            </div>
-                            <div className="grid-item my-3 py-3 cardRem">
-                                Joing Income
-                            </div>
-                            <div className="grid-item my-3 py-3 cardRem">
-                                Level Income
-                            </div>
-                            <div className="grid-item my-3 py-3 cardRem">
-                                Total Income
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-sm">
-                        <div className="grid-container d-flex flex-wrap justify-content-center">
-                            <div className="grid-item my-3 py-3 cardRem">
-                                Main Income
-                            </div>
-                            <div className="grid-item my-3 py-3 cardRem">
-                                Active Income
-                            </div>
-                            <div className="grid-item my-3 py-3 cardRem">
-                                Offer Income
-                            </div>
-                            <div className="grid-item my-3 py-3 cardRem">
-                                Global Income
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    
         </div>
     );
 }

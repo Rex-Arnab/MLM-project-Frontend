@@ -124,8 +124,8 @@ const UserDetailEditForm = ({ user, handleSubmit }) => {
     const [is_bank_locked, setIsBankLocked] = useState(user.is_bank_locked)
     const [id_count, setIdCount] = useState(user.id_count)
     // const [referals, setReferals] = useState(user.referals)
-    const [main_wallet, setMainWallet] = useState(user.wallet.main_wallet)
-    const [activation_wallet, setActivationWallet] = useState(user.wallet.activation_wallet)
+    // const [main_wallet, setMainWallet] = useState(user.wallet.main_wallet)
+    // const [activation_wallet, setActivationWallet] = useState(user.wallet.activation_wallet)
     // const [status, setStatus] = useState(user.status)
     const [created_at, setCreatedAt] = useState(user.created_at)
     const [level, setLevel] = useState({
@@ -196,7 +196,7 @@ const UserDetailEditForm = ({ user, handleSubmit }) => {
             
             <form onSubmit={(e) => {
                 setLoading(true)
-                handleSubmit(e, user.uid, username, password, email, phone, head_member, bank_name, account_number, account_holder_name, bank_branch, ifsc_code, is_admin, is_bank_locked, id_count, main_wallet, activation_wallet)
+                handleSubmit(e, user.uid, username, password, email, phone, head_member, bank_name, account_number, account_holder_name, bank_branch, ifsc_code, is_admin, is_bank_locked, id_count)
                     .then(() => {
                         setLoading(false)
                     })

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Table } from 'react-bootstrap'
 import DataTable from 'react-data-table-component';
 
 

@@ -12,7 +12,7 @@ function Report() {
 }
 
 const LevelReport = () => {
-    const [level, setLevel] = useState([]);
+    // const [level, setLevel] = useState([]);
     return (
         <div className="section">
             <h3>Level Report</h3>

@@ -28,7 +28,7 @@ function MyTeam({team, setTeam}) {
                             <div className="card">
                                 <div className="card-content">
                                     <span className="card-title">My Team</span>
-                                    <table className="responsive-table striped">
+                                    <table className="table table-striped">
                                         <thead>
                                             <tr>
                                                 <th>#</th>

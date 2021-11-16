@@ -31,7 +31,7 @@ const LevelReport = () => {
                         </thead>
                         <tbody>
 
-                            <tr>
+                            <tr className="table-success">
                                 <td>Bronze Star</td>
                                 <td>100</td>
                                 <td>1</td>

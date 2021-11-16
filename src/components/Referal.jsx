@@ -26,7 +26,7 @@ export default function Referal() {
                                     <b>Referal by { params.ref_id }</b>
                                 </div>
                                 <div className="card-body">
-                                    <MasterForm />
+                                    <MasterForm referid={params.ref_id}/>
                                 </div>
                             </div>
                         </div>
@@ -47,9 +47,13 @@ class MasterForm extends React.Component {
     super(props)
     this.state = {
       currentStep: 1,
-      email:  '',
-      username: '',
-      password: '', 
+      email: "",
+      name: "",
+      username: "",
+      password: "",
+      aadhaar: "",
+      phone: "",
+      ref_id: props.referid,
     }
   }
 
@@ -57,16 +61,39 @@ class MasterForm extends React.Component {
     const {name, value} = event.target
     this.setState({
       [name]: value
-    })    
+    })
   }
    
   handleSubmit = event => {
     event.preventDefault()
-    const { email, username, password } = this.state
-    alert(`Your registration detail: \n 
-           Email: ${email} \n 
-           Username: ${username} \n
-           Password: ${password}`)
+    console.log(this.state)
+    const { email, name, username, password, aadhaar, phone, ref_id } = this.state
+    if(email && name && username && password && aadhaar && phone){
+      fetch('https://stormy-ridge-27884.herokuapp.com/refer/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          name,
+          username,
+          password,
+          addhar:aadhaar,
+          phone,
+          head:ref_id
+        })
+      })
+      .then(res => res.json())
+      .then(res => {
+        if(res.success){
+          alert("Successfully registered")
+        }
+        else{
+          alert("Error in registration")
+        }
+      })
+    }
   }
   
   _next = () => {
@@ -128,16 +155,19 @@ nextButton(){
           currentStep={this.state.currentStep} 
           handleChange={this.handleChange}
           email={this.state.email}
+          name={this.state.name}
         />
         <Step2 
           currentStep={this.state.currentStep} 
           handleChange={this.handleChange}
           username={this.state.username}
-        />
+          password={this.state.password}
+          />
         <Step3 
           currentStep={this.state.currentStep} 
           handleChange={this.handleChange}
-          password={this.state.password}
+          aadhaar={this.state.aadhaar}
+          phone={this.state.phone}
         />
         {this.previousButton()}
         {this.nextButton()}
@@ -155,20 +185,33 @@ function Step1(props) {
     return (
         <React.Fragment>
     <div className="form-group m-3">
-          <label className="text-center text-xl-right" htmlFor="email">Email address</label>  
-      <input
-        className="form-control"
-        id="email"
-        name="email"
-        type="text"
-        placeholder="Enter email"
-        value={props.email}
-        onChange={props.handleChange}
-          />
-          
+        <div className="form-group">
           <label htmlFor="exampleInputEmail1">Email address</label>
-                    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+            <input
+              type="email"
+              className="form-control w-100"
+              id="email"
+              name="email"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+              value={props.email}
+              onChange={props.handleChange}
+            />
+        </div>
+        <div className="form-group">
+          <label htmlFor="exampleInputEmail1">Name</label>
+            <input
+              type="text"
+              className="form-control w-100"
+              id="name"
+              name="name"
+              aria-describedby="nameHelp"
+              placeholder="Enter name"
+              value={props.name}
+              onChange={props.handleChange}
+            />
+        <small id="nameHelp" className="form-text text-muted">We'll never share your name with anyone else.</small>
+        </div>
 
     </div>
       </React.Fragment>
@@ -180,18 +223,34 @@ function Step2(props) {
     return null
   } 
   return(
-    <div className="form-group m-3">
-      <label htmlFor="username">Username</label>
-      <input
-        className="form-control"
-        id="username"
-        name="username"
-        type="text"
-        placeholder="Enter username"
-        value={props.username}
-        onChange={props.handleChange}
-        />
-    </div>
+    <React.Fragment>
+      <div className="form-group m-3">
+          <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              className="form-control w-100"
+              id="username"
+              name="username"
+              placeholder="Enter username"
+              value={props.username}
+              onChange={props.handleChange}
+            />
+      </div>
+      <div className="form-group m-3">
+          <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              className="form-control w-100"
+              id="password"
+              name="password"
+              aria-describedby="passwordHelp"
+              placeholder="Enter password"
+              value={props.password}
+              onChange={props.handleChange}
+            />
+        <small id="nameHelp" className="form-text text-muted">We'll never share your details with anyone else.</small>
+      </div>
+      </React.Fragment>
   );
 }
 
@@ -202,15 +261,27 @@ function Step3(props) {
   return(
     <React.Fragment>
     <div className="form-group m-3">
-      <label htmlFor="password">Password</label>
+      <label htmlFor="aadhaar">Aadhaar number</label>
       <input
-        className="form-control"
-        id="password"
-        name="password"
-        type="password"
-        placeholder="Enter password"
-        value={props.password}
-        onChange={props.handleChange}
+        className="form-control w-100"
+          id="aadhaar"
+          name="aadhaar"
+          type="text"
+          placeholder="Enter Aadhaar Number"
+          value={props.aadhaar}
+          onChange={props.handleChange}
+        />      
+    </div>
+    <div className="form-group m-3">
+      <label htmlFor="phone">Phone</label>
+      <input
+        className="form-control w-100"
+          id="phone"
+          name="phone"
+          type="number"
+          placeholder="Enter Phone Number"
+          value={props.phone}
+          onChange={props.handleChange}
         />      
     </div>
     <button className="btn btn-success float-right mt-3">Sign up</button>

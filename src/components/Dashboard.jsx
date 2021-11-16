@@ -6,7 +6,7 @@ import axios from "axios";
 function Dashboard() {
     const user = JSON.parse(localStorage.getItem("user"));
     const promotion = localStorage.getItem("promotion");
-    const [global, setGlobal] = useState([]);
+    const global = localStorage.getItem("globalCount");
     const history = useHistory();
     useEffect(() => {
         if (!user) {
@@ -19,12 +19,6 @@ function Dashboard() {
                 }
             })
 
-        axios.post("https://stormy-ridge-27884.herokuapp.com/getTotalUser", { token: localStorage.getItem("token") })
-            .then(res => {
-                if (res.data.status === "success") {
-                    setGlobal(res.data.count);
-                }
-            })
     }, [history, user]);
     return (
         <div className="section">

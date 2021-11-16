@@ -29,6 +29,7 @@ export default function Login() {
                 localStorage.setItem('user', JSON.stringify(res.data.user))
                 localStorage.setItem('id_price', res.data.config.id_price)
                 localStorage.setItem('promotion', res.data.config.promotion)
+                localStorage.setItem('globalCount', res.data.globalCount)
 
                 setLoading(false)
                 setTimeout(() => {

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../App.css";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
@@ -28,20 +28,20 @@ function Dashboard() {
     }, [history, user]);
     return (
         <div className="section">
-   
+
             <nav className="navbar text-white bg-dark d-flex justify-content-between flex-s-column flex-md-row">
-                <div className="bg-danger p-2">ID : { user.uid }</div>
-                <div className="p-2">{ user.username }</div>
-                <div className="p-2">{ new Date(user.created_at).toLocaleDateString() }</div>
+                <div className="bg-danger p-2">ID : {user.uid}</div>
+                <div className="p-2">{user.username}</div>
+                <div className="p-2">{new Date(user.created_at).toLocaleDateString()}</div>
             </nav>
-            
+
             {promotion.length !== 0 && (
                 <div className="alert alert-warning alert-dismissible fade show" role="alert">
                     <h4 className="alert-heading text-center">{promotion}</h4>
                 </div>
             )}
 
-            <div className="container" style={{padding: "1rem 0"}}>
+            <div className="container" style={{ padding: "1rem 0" }}>
                 <div className="row">
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
                         <span>Referal Income</span>
@@ -61,7 +61,7 @@ function Dashboard() {
                     </div>
                 </div>
 
-                 <div className="row">
+                <div className="row">
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
                         <span>Main Income</span>
                         <h5 className="text-black">{user.wallet.main_wallet}</h5>
@@ -76,12 +76,12 @@ function Dashboard() {
                     </div>
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
                         <span>Global</span>
-                        <h5 className="text-black">{ global }</h5>
+                        <h5 className="text-black">{global}</h5>
                     </div>
                 </div>
             </div>
 
-                    
+
         </div>
     );
 }

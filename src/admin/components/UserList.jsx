@@ -1,5 +1,6 @@
 import { useState, useEffect, Fragment } from 'react'
 import axios from 'axios'
+import { Table } from 'reactstrap'
 
 const UserList = () => {
     const [users, setUsers] = useState([])
@@ -16,7 +17,7 @@ const UserList = () => {
     return (
         <div>
             <h1>User List</h1>
-            <table striped bordered hover>
+            <Table striped bordered hover>
                 <thead>
                     <tr>
                         <th>#</th>
@@ -42,7 +43,7 @@ const UserList = () => {
                         )
                     })}
                 </tbody>
-            </table>
+            </Table>
         </div>
     )
 }

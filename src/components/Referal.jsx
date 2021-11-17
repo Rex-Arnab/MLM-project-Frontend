@@ -83,8 +83,8 @@ class MasterForm extends React.Component {
       })
       .then(res => res.json())
       .then(res => {
-        if(res.success){
-          alert("Successfully registered")
+        if(res.status === 'success'){
+          alert(res.message)
         }
         else{
           alert("Error in registration")

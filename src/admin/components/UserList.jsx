@@ -185,28 +185,6 @@ const UserDetailEditForm = ({ user }) => {
                 console.log(err)
                 setLoading(false)
             })
-        // axios.post(`http://stormy-ridge-27884.herokuapp.com/update_user/${user.uid}`, {
-        //     token: JSON.parse(localStorage.getItem('token')),
-        //     username,
-        //     password,
-        //     email,
-        //     phone,
-        //     head_member,
-        //     bank_name,
-        //     account_number,
-        //     account_holder_name,
-        //     bank_branch,
-        //     ifsc_code,
-        //     is_admin,
-        //     is_bank_locked,
-        //     id_count
-        // })
-        //     .then(res => {
-        //         console.log(res)
-
-        //     }).catch(err => {
-        //         console.log(err)
-        //     })
     }
     
    

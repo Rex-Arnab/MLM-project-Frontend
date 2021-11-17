@@ -2,10 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router'
 
 export default function Referal() {
-    // const 
-    // React.useState(() => {
 
-    // }, [])
     const params = useParams()
     return (
         <div>

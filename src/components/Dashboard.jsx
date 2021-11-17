@@ -70,7 +70,7 @@ function Dashboard() {
                     </div>
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
                         <span>Global</span>
-                        <h5 className="text-black">{global}</h5>
+                        <h5 className="text-black">{global - user.uid}</h5>
                     </div>
                 </div>
             </div>

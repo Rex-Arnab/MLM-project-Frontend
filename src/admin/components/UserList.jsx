@@ -161,7 +161,7 @@ const UserDetailEditForm = ({ user }) => {
         e.preventDefault()
         setLoading(true)
         console.log("Working FIne")
-        axios.post("http://stormy-ridge-27884.herokuapp.com/update_user/" + user.uid, {
+        axios.post("https://stormy-ridge-27884.herokuapp.com/update_user/" + user.uid, {
                 username,
                 password,
                 email,

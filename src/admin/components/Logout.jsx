@@ -22,7 +22,7 @@ const Logout = () => {
                 }}
                 className={clicked ? 'btn btn-danger' : 'btn btn-primary'}
             >
-                {clicked ? <span>Logging out... <i class="fas fa-spinner fa-spin"></i></span> : 'Logout'}
+                {clicked ? <span>Logging out... <i className="fas fa-spinner fa-spin"></i></span> : 'Logout'}
             </button>
         </div>
     )

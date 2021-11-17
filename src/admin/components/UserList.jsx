@@ -14,36 +14,6 @@ const UserList = () => {
             })
     }, [])
 
-     const handleSubmit = (e, uid , username, password, email, phone, head_member, bank_name, account_number, account_holder_name, bank_branch, ifsc_code, is_admin, is_bank_locked, id_count, main_wallet, activation_wallet) => {
-        e.preventDefault()
-        axios.put(`http://stormy-ridge-27884.herokuapp.com/update_user/${uid}`, {
-            token: JSON.parse(localStorage.getItem('token')),
-            username,
-            password,
-            email,
-            phone,
-            head_member,
-            bank_name,
-            account_number,
-            account_holder_name,
-            bank_branch,
-            ifsc_code,
-            is_admin,
-            is_bank_locked,
-            id_count,
-            main_wallet,
-            activation_wallet,
-        })
-            .then(res => {
-                console.log(res)
-
-            }).catch(err => {
-                console.log(err)
-
-            })
-        
-    }
-
     return (
         <div>
             <h1>User List</h1>
@@ -67,7 +37,7 @@ const UserList = () => {
                                 <td>{new Date(user.created_at).toLocaleDateString()}</td>
                                 <td>
                                     
-                                    <UserEditModel user={user} handleSubmit={ handleSubmit }/>
+                                    <UserEditModel user={user} />
                                 </td>
                             </tr>
                         )
@@ -81,24 +51,24 @@ const UserList = () => {
 const UserEditModel = ({user, handleSubmit}) => {
     return (
         <Fragment>
-            <button type="button" class="btn btn-info mr-1 text-white" data-bs-toggle="modal" data-bs-target={`#myModal${user.uid}`}>
-                <i class="fas fa-edit"></i>
+            <button type="button" className="btn btn-info mr-1 text-white" data-bs-toggle="modal" data-bs-target={`#myModal${user.uid}`}>
+                <i className="fas fa-edit"></i>
             </button>
-            <div class="modal fade" id={`myModal${user.uid}`}>
-            <div class="modal-dialog">
-                <div class="modal-content">
+            <div className="modal fade" id={`myModal${user.uid}`}>
+            <div className="modal-dialog">
+                <div className="modal-content">
 
-                <div class="modal-header">
-                    <h4 class="modal-title">Change Detail for {user.username}</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <div className="modal-header">
+                    <h4 className="modal-title">Change Detail for {user.username}</h4>
+                    <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
-                <div class="modal-body">
-                            <UserDetailEditForm user={user} handleSubmit={ handleSubmit }/>
+                <div className="modal-body">
+                            <UserDetailEditForm user={user} />
                 </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <div className="modal-footer">
+                    <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 </div>
 
                 </div>
@@ -109,7 +79,7 @@ const UserEditModel = ({user, handleSubmit}) => {
 }
 
 
-const UserDetailEditForm = ({ user, handleSubmit }) => {
+const UserDetailEditForm = ({ user }) => {
     const [username, setUsername] = useState(user.username)
     const [password, setPassword] = useState(user.password)
     const [email, setEmail] = useState(user.email)
@@ -187,20 +157,64 @@ const UserDetailEditForm = ({ user, handleSubmit }) => {
     })
 
     const [loading, setLoading] = useState(false)
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setLoading(true)
+        console.log("Working FIne")
+        axios.post("http://stormy-ridge-27884.herokuapp.com/update_user/" + user.uid, {
+                username,
+                password,
+                email,
+                phone,
+                head_member,
+                bank_name,
+                account_number,
+                account_holder_name,
+                bank_branch,
+                ifsc_code,
+                is_admin,
+                is_bank_locked,
+                id_count,
+                token: localStorage.getItem("token")
+            })
+            .then(res => {
+                console.log(res)
+                setLoading(false)
+            })
+            .catch(err => {
+                console.log(err)
+                setLoading(false)
+            })
+        // axios.post(`http://stormy-ridge-27884.herokuapp.com/update_user/${user.uid}`, {
+        //     token: JSON.parse(localStorage.getItem('token')),
+        //     username,
+        //     password,
+        //     email,
+        //     phone,
+        //     head_member,
+        //     bank_name,
+        //     account_number,
+        //     account_holder_name,
+        //     bank_branch,
+        //     ifsc_code,
+        //     is_admin,
+        //     is_bank_locked,
+        //     id_count
+        // })
+        //     .then(res => {
+        //         console.log(res)
 
+        //     }).catch(err => {
+        //         console.log(err)
+        //     })
+    }
     
    
     
     return (
         <Fragment>
             
-            <form onSubmit={(e) => {
-                setLoading(true)
-                handleSubmit(e, user.uid, username, password, email, phone, head_member, bank_name, account_number, account_holder_name, bank_branch, ifsc_code, is_admin, is_bank_locked, id_count)
-                    .then(() => {
-                        setLoading(false)
-                    })
-            }}>
+            <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="uid">UID</label>
                             <input type="text" className="form-control w-100" id="uid" placeholder="uid" defaultValue={user.uid} disabled />

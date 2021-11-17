@@ -18,12 +18,17 @@ export default function AdminLogin() {
         password: password
         })
             .then(res => {
-            setLoading(false)
-            localStorage.setItem('token', res.data.token)
-            localStorage.setItem('user', JSON.stringify(res.data.user))
-            setTimeout(() => {
-                history.push('/admin/dashboard')
-            }, 300);
+                setLoading(false)
+                if (res.data.user.is_admin) {
+                    localStorage.setItem('token', res.data.token)
+                    localStorage.setItem('user', JSON.stringify(res.data.user))
+                    setTimeout(() => {
+                        history.push('/admin/dashboard')
+                    }, 300);
+                } else {
+                    setError(true)
+                    alert("You are not an admin")
+                }
         })
         .catch(err => {
             setLoading(false)

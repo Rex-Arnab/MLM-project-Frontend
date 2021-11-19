@@ -34,7 +34,7 @@ const Sidebar = () => {
 
                 <CDBSidebarHeader prefix={<i className="fa fa-bars"></i>} >
 
-                    <span className="text-decoration-none" style={{ color: "inherit" }}>Logo</span>
+                    <span className="text-decoration-none" style={{ color: "inherit" }}>SureSuccess</span>
                 </CDBSidebarHeader>
 
                 <CDBSidebarContent className="sidebar-content">

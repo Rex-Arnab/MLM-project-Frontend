@@ -29,7 +29,7 @@ export default function Referal() {
     
     return (
            
-                <div className="container-fluid my-3">
+                <div className="container-fluid my-3 section">
                     <div className="row">
                         <div className="col-md-8 offset-md-2">
                             <div className="card">
@@ -37,7 +37,7 @@ export default function Referal() {
                                     <b>Referal by { params.ref_id }</b>
                                 </div>
                   <div className="card-body">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={() => handleSubmit}>
 
 
                     <div className="row">

@@ -37,39 +37,39 @@ function Dashboard() {
 
             <div className="container" style={{ padding: "1rem 0" }}>
                 <div className="row">
-                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
+                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2" style={{backgroundColor: "rgb(50, 155, 247)"}}>
                         <span>Referal Income</span>
                         <h5 className="text-black">0</h5>
                     </div>
-                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
+                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2" style={{backgroundColor: "rgb(50, 155, 247)"}}>
                         <span>Joing Income</span>
                         <h5 className="text-black">0</h5>
                     </div>
-                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
+                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2" style={{backgroundColor: "rgb(50, 155, 247)"}}>
                         <span>Level Income</span>
                         <h5 className="text-black">0</h5>
                     </div>
-                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
+                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2" style={{backgroundColor: "rgb(50, 155, 247)"}}>
                         <span>Total Income</span>
                         <h5 className="text-black">0</h5>
                     </div>
                 </div>
 
                 <div className="row">
-                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
+                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2" style={{backgroundColor: "rgb(50, 155, 247)"}}>
                         <span>Main Income</span>
                         <h5 className="text-black">{user.wallet.main_wallet}</h5>
                     </div>
-                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
+                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2" style={{backgroundColor: "rgb(50, 155, 247)"}}>
                         <span>Active Income</span>
                         <h5 className="text-black">0</h5>
                     </div>
-                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
+                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2" style={{backgroundColor: "rgb(50, 155, 247)"}}>
                         <span>Offer Income</span>
                         <h5 className="text-black">0</h5>
                     </div>
-                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2">
-                        <span>Global</span>
+                    <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2" style={{backgroundColor: "rgb(50, 155, 247)"}}>
+                        <span>Global Joining</span>
                         <h5 className="text-black">{global - user.uid}</h5>
                     </div>
                 </div>

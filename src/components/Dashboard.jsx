@@ -43,7 +43,7 @@ function Dashboard() {
                     </div>
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2" style={{backgroundColor: "rgb(50, 155, 247)"}}>
                         <span>Joing Income</span>
-                        <h5 className="text-black">0</h5>
+                        <h5 className="text-black">50</h5>
                     </div>
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2" style={{backgroundColor: "rgb(50, 155, 247)"}}>
                         <span>Level Income</span>

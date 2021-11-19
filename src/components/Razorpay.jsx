@@ -38,9 +38,9 @@ function Razorpay({amount, userDetail}) {
 			description: 'Fill this forum to join new Member',
 			image: './favicon.svg',
 			handler: (response) => {
-				alert(response.razorpay_payment_id)
+				/* alert(response.razorpay_payment_id)
 				alert(response.razorpay_order_id)
-				alert(response.razorpay_signature)
+				alert(response.razorpay_signature) */
 
 				axios({
 					method: "POST",
@@ -68,7 +68,7 @@ function Razorpay({amount, userDetail}) {
 			prefill: {
 				name: userDetail.name,
 				email: userDetail.email,
-				phone_number: userDetail.phone
+				contact: userDetail.phone
 			}
 		}
 		const paymentObject = new window.Razorpay(options)

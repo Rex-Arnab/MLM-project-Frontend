@@ -44,7 +44,7 @@ const Sidebar = () => {
                         <Link to="join" title="Join new Member" icons="user-plus"/>
                         <Link to="update" title="Update Profile" icons="users-cog"/>
                         <Link to="widthdrawl" title="Widthdrawl" icons="piggy-bank"/>
-                        <Link to="transfer" title="Transfer" icons="exchange-alt"/>
+                        <Link to="transfer" title="Activation Wallet Recharge" icons="exchange-alt"/>
                         <Link to="myteam" title="My Team" icons="users"/>
                         <Link to="report" title="Report" icons="chart-bar"/>
                         <Link to="logout" title="Log out" icons="power-off"/>

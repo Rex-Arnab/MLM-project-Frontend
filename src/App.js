@@ -25,7 +25,7 @@ function App() {
           <Route exact path="/" component={Login} />
           <Route exact path="/admin/" component={AdminLogin} />
           <Route exact path="/admin/dashboard" component={AdminDashboard} />
-          <Route exact path="/refereal/:ref_id" component={Referal} />
+          <Route path="/refereal/:ref_id" component={Referal} />
           <Route exact path="/refereal" component={() => <p className="d-flex alert alert-danger">No Referral ID Found</p>} />
           <div className="App">
             <Sidebar />

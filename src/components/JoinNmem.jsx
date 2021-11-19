@@ -150,19 +150,34 @@ function JoinNmem() {
                     render={({ message }) => <p className="error">{message}</p>}
                 />
                 <div className="w-50 paySection">
-                     <Razorpay amount={localStorage.getItem("id_price")} userDetail={{
-                            uname: regsiterUsername,
-                            name: regsiterName,
-                            phone: regsiterPhone,
-                            email: regsiterEmail,
-                            addhar: regsiterAddar,
-                            head: regsiterHeadmem
-                        }} />
+                    <Razorpay amount={localStorage.getItem("id_price")} userDetail={{
+                        uname: regsiterUsername,
+                        name: regsiterName,
+                        phone: regsiterPhone,
+                        email: regsiterEmail,
+                        addhar: regsiterAddar,
+                        head: regsiterHeadmem
+                            
+                    }}
+                        text="Pay Now"
+                    />
                     <span className="mr-2">OR</span>
+                    {/* <Razorpay amount={localStorage.getItem("id_price")} userDetail={{
+                        uname: regsiterUsername,
+                        name: regsiterName,
+                        phone: regsiterPhone,
+                        email: regsiterEmail,
+                        addhar: regsiterAddar,
+                        head: regsiterHeadmem
+                            
+                    }}
+                        text="Pay with Activation wallet"
+                        disabled={user.id_count === 0}
+                    /> */}
                     <Button
                         variant="primary"
                         type="submit"
-                        disabled={user.id_count === 0}
+                        disabled={ true }
                     >
                     Pay with Activation wallet (Remaining IDs {user.id_count})
                 </Button>

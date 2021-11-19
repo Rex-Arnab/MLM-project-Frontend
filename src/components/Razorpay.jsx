@@ -15,7 +15,7 @@ function loadScript(src) {
 }
 
 
-function Razorpay({amount, userDetail}) {
+function Razorpay({amount, userDetail, text}) {
 	console.log(userDetail)
 	async function displayRazorpay() {
 		const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
@@ -79,7 +79,7 @@ function Razorpay({amount, userDetail}) {
 		<button onClick={(e) => {
 			e.preventDefault()
 			displayRazorpay()
-		}} className="btn-primary">Pay Rs. { amount }</button>
+		}} className="btn-primary">{ text }</button>
 	)
 }
 

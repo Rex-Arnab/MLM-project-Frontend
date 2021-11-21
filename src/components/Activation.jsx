@@ -68,7 +68,7 @@ function Activation() {
 				alert(response.razorpay_order_id)
 				alert(response.razorpay_signature) */
 
-                axios.post("http://stormy-ridge-27884.herokuapp.com/buy_ids", {
+                axios.post("https://stormy-ridge-27884.herokuapp.com/buy_ids", {
                     token: localStorage.getItem("token"),
                     no_of_ids: parseInt(noofid),
                     amount: parseInt(perid * noofid)

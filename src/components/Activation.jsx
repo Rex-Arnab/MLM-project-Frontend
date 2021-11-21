@@ -104,7 +104,7 @@ function Activation() {
             {user.wallet.activation_wallet > 0 ? "Your activation wallet balance is " + user.wallet.activation_wallet: "You don't have any wallet balance"}
             </h2>
             {/* <h1 className="active-head">Buy ID's From Activation Wallet</h1> */}
-            <Form onSubmit={buyActivationWalletRecharge}>
+            <Form onSubmit={displayRazorpay}>
                 <Form.Group className="mb-3" controlId="formNoOfID">
                     <Form.Label>Number Of ID: </Form.Label>
                     <Form.Control
@@ -142,7 +142,6 @@ function Activation() {
                     className={loading ? "btn-secondary" : "btn-primary"}
                     onClick={() => {
                         setLoading(true)
-                        displayRazorpay()
                     }}
                 >
                     {loading ? "Loading..." : "Buy"}

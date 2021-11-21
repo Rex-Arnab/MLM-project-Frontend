@@ -1,9 +1,9 @@
 import {useState} from 'react'
-// import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
 export default function Referal() {
-  // const params = useParams()
+  const params = useParams()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
@@ -18,7 +18,7 @@ export default function Referal() {
       username: username,
       aadhaar: aadhaar,
       phone: phone,
-      // referal: params.referal
+      referal: params.referal
     })
       .then(res => {
         if(res.data.status === 'success') {
@@ -34,8 +34,7 @@ export default function Referal() {
                         <div className="col-md-8 offset-md-2">
                             <div className="card">
                                 <div className="card-header">
-                                    {/* <b>Referal by { params.ref_id }</b> */}
-                                    <b>Referal by Arnab</b>
+                                    <b>Referal by { params.ref_id }</b>
                                 </div>
                   <div className="card-body">
                     <form onSubmit={() => handleSubmit}>

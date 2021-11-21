@@ -15,7 +15,6 @@ function Widthdrawl() {
         axios({
             method: "POST",
             data: {
-                username: user.username,
                 amount: amount,
                 token: JSON.parse(localStorage.getItem("token"))
             },
@@ -49,6 +48,7 @@ function Widthdrawl() {
 
     return (
         <div className="section">
+            {/* WithDrawl Status Alert */}
             <div
                 className="alert alert-success text-center alert-dismissible fade show"
                 role="alert"
@@ -65,6 +65,9 @@ function Widthdrawl() {
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
+
+            {/* Widthdrawl Form */}
             <h1 className="withd-head">Withdrawal Balance</h1>
        
             <form onSubmit={(e) => withdrawlBalance(e)}>

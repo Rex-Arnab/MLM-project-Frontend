@@ -42,7 +42,8 @@ function Activation() {
     //     });
     // }
 
-    const displayRazorpay = async () => {
+    const displayRazorpay = async (e) => {
+        e.preventDefault();
 		const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
 
 		if (!res) {
@@ -68,9 +69,8 @@ function Activation() {
 				alert(response.razorpay_order_id)
 				alert(response.razorpay_signature) */
 
-                axios.post("https://stormy-ridge-27884.herokuapp.com/buy_ids", {
+                axios.post("https://stormy-ridge-27884.herokuapp.com/add_balance_to_activation", {
                     token: localStorage.getItem("token"),
-                    no_of_ids: parseInt(noofid),
                     amount: parseInt(perid * noofid)
                 }).then(res => {
                     console.log(res.data);

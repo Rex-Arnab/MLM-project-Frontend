@@ -56,8 +56,8 @@ function Activation() {
         })
 
 		const options = {
-			key: 'rzp_test_E1a23udbRfmhNA' ,
-			// key: 'rzp_live_gPvbR0S04OUDro' ,
+			// key: 'rzp_test_E1a23udbRfmhNA' ,
+			key: 'rzp_live_gPvbR0S04OUDro' ,
 			currency: data.data.currency,
 			amount: data.data.amount.toString(),
 			order_id: data.data.id,

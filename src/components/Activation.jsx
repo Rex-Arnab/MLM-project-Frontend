@@ -23,24 +23,24 @@ function Activation() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);    
     
-    const buyActivationWalletRecharge = (e) => {
-        e.preventDefault();
-        axios.post("http://stormy-ridge-27884.herokuapp.com/buy_ids", {
-            token: localStorage.getItem("token"),
-            no_of_ids: parseInt(noofid),
-            amount: parseInt(perid * noofid)
-        }).then(res => {
-            console.log(res.data);
-            user.wallet = res.data.balance;
-            user.id_count += parseInt(noofid)
-            localStorage.setItem("user", JSON.stringify(user));
-            setLoading(false);
-        }).catch(err => {
-            console.log(err);
-            setLoading(false);
-            setError(true);
-        });
-    }
+    // const buyActivationWalletRecharge = (e) => {
+    //     e.preventDefault();
+    //     axios.post("http://stormy-ridge-27884.herokuapp.com/buy_ids", {
+    //         token: localStorage.getItem("token"),
+    //         no_of_ids: parseInt(noofid),
+    //         amount: parseInt(perid * noofid)
+    //     }).then(res => {
+    //         console.log(res.data);
+    //         user.wallet = res.data.balance;
+    //         user.id_count += parseInt(noofid)
+    //         localStorage.setItem("user", JSON.stringify(user));
+    //         setLoading(false);
+    //     }).catch(err => {
+    //         console.log(err);
+    //         setLoading(false);
+    //         setError(true);
+    //     });
+    // }
 
     const displayRazorpay = async () => {
 		const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')

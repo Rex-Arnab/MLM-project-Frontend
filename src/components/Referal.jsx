@@ -18,7 +18,7 @@ export default function Referal() {
       username: username,
       aadhaar: aadhaar,
       phone: phone,
-      referal: params.referal
+      // referal: params.referal
     })
       .then(res => {
         if(res.data.status === 'success') {

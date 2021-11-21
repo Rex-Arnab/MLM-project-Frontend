@@ -82,7 +82,6 @@ export default function Referal() {
                     }}
                         text="Sign Up"
                     />
-
                         
                   </form>
             

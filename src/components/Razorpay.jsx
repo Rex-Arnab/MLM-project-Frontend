@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 
 function loadScript(src) {
 	return new Promise((resolve) => {
@@ -16,8 +17,9 @@ function loadScript(src) {
 
 
 function Razorpay({amount, userDetail, text}) {
-	console.log(userDetail)
 	async function displayRazorpay() {
+		// eslint-disable-next-line react-hooks/rules-of-hooks
+		const history = useHistory();
 		const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
 
 		if (!res) {
@@ -61,6 +63,7 @@ function Razorpay({amount, userDetail, text}) {
 						console.log(res.data)
 						if (res.data.status === "success") {
 							alert("Registered Successfully")
+							history.push("/")
 						} else {
 							alert("Registration Failed")
 						}

@@ -26,11 +26,12 @@ function Razorpay({amount, userDetail, text}) {
 		}
 
         const data = await axios.post('https://stormy-ridge-27884.herokuapp.com/pay/razorpay', {
-            amount: parseInt(amount),
+            amount: amount,
         })
 
 		const options = {
-			key: 'rzp_live_gPvbR0S04OUDro' ,
+			key: 'rzp_test_E1a23udbRfmhNA' ,
+			// key: 'rzp_live_gPvbR0S04OUDro' ,
 			currency: data.data.currency,
 			amount: data.data.amount.toString(),
 			order_id: data.data.id,
@@ -42,27 +43,44 @@ function Razorpay({amount, userDetail, text}) {
 				alert(response.razorpay_order_id)
 				alert(response.razorpay_signature) */
 
-				axios({
+				if (userDetail.type === "joinMember") {
+					axios({
 					method: "POST",
 					data: {
 						token: localStorage.getItem("token"),
 						username: userDetail.uname,
+							name: userDetail.name,
+							phone: userDetail.phone,
+							email: userDetail.email,
+							aadhar: userDetail.aadhar,
+							head: userDetail.head
+						},
+						withCredentials: true,
+						url: "https://stormy-ridge-27884.herokuapp.com/register",
+					}).then(res => {
+						console.log(res.data)
+						if (res.data.status === "success") {
+							alert("Registered Successfully")
+						} else {
+							alert("Registration Failed")
+						}
+					})
+				} else if(userDetail.type === "referal") {
+					axios.post('https://stormy-ridge-27884.herokuapp.com/refer/register', {
 						name: userDetail.name,
-						phone: userDetail.phone,
 						email: userDetail.email,
-						aadhar: userDetail.aadhar,
-						head: userDetail.head
-					},
-					withCredentials: true,
-					url: "https://stormy-ridge-27884.herokuapp.com/register",
-				}).then(res => {
-					console.log(res.data)
-					if (res.data.status === "success") {
-						alert("Registered Successfully")
-					} else {
-						alert("Registration Failed")
-					}
-				})
+						username: userDetail.uname,
+						aadhaar: userDetail.aadhar,
+						phone: userDetail.name,
+						referal: userDetail.head
+					})
+					.then(res => {
+						if(res.data.status === 'success') {
+							alert(res.data.message)
+						}
+					})
+
+				}
 				
 			},
 			prefill: {

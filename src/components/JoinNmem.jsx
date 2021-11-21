@@ -156,7 +156,8 @@ function JoinNmem() {
                         phone: regsiterPhone,
                         email: regsiterEmail,
                         addhar: regsiterAddar,
-                        head: regsiterHeadmem
+                        head: regsiterHeadmem,
+                        type: "joinMember"
                             
                     }}
                         text="Pay Now"

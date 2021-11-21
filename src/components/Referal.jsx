@@ -1,5 +1,6 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
+import Razorpay from "./Razorpay"
 import axios from 'axios'
 
 export default function Referal() {
@@ -9,24 +10,13 @@ export default function Referal() {
   const [username, setUsername] = useState('')
   const [aadhaar, setAadhaar] = useState('')
   const [phone, setPhone] = useState('')
+  const [id_price, setId_price] = useState('')
   
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    axios.post('https://stormy-ridge-27884.herokuapp.com/refer/register', {
-      name: name,
-      email: email,
-      username: username,
-      aadhaar: aadhaar,
-      phone: phone,
-      referal: params.referal
+  useEffect(() => {
+    axios.get('https://stormy-ridge-27884.herokuapp.com/get_id_price').then(res => {
+      setId_price(res.data.price)
     })
-      .then(res => {
-        if(res.data.status === 'success') {
-          alert(res.data.message)
-        }
-      })
-  }
-    
+  }, [])
     return (
            
                 <div className="container-fluid my-3 section">
@@ -37,7 +27,7 @@ export default function Referal() {
                                     <b>Referal by { params.ref_id }</b>
                                 </div>
                   <div className="card-body">
-                    <form onSubmit={() => handleSubmit}>
+                    <form>
 
 
                     <div className="row">
@@ -76,9 +66,22 @@ export default function Referal() {
                       </div>
 
 
-                      <div className="col-md-12">
+                      {/* <div className="col-md-12">
                           <button className="btn btn-primary" type="submit">Submit</button>
-                        </div>
+                  </div> */}
+                  <Razorpay
+                    amount={id_price}
+                    userDetail={{
+                        uname: username,
+                        name: name,
+                        phone: phone,
+                        email: email,
+                        addhar: aadhaar,
+                        head: params.ref_id,
+                        type: 'referal'   
+                    }}
+                        text="Sign Up"
+                    />
 
                         
                   </form>

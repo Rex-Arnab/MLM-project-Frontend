@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+// import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import Razorpay from "./Razorpay"
@@ -15,7 +15,7 @@ function JoinNmem() {
     const [regsiterEmail, setRegisterEmail] = useState("");
     const [regsiterAddar, setRegisterAddar] = useState("");
     const [regsiterHeadmem, setRegisterHeadmem] = useState("");
-    const user = JSON.parse(localStorage.getItem("user"));
+    // const user = JSON.parse(localStorage.getItem("user"));
 
 
     return (

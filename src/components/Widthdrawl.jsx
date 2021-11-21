@@ -4,6 +4,7 @@ import { Form } from "react-bootstrap";
 
 function Widthdrawl() {
     const user = JSON.parse(localStorage.getItem("user"));
+    const [widthdrawlAmount, setWidthdrawlAmount] = useState(0)
     const [amount, setAmount] = useState(0)
     const [balance, setBalance] = useState(user.wallet.main_wallet)
     const [success, setSuccess] = useState(false)
@@ -15,7 +16,7 @@ function Widthdrawl() {
         axios({
             method: "POST",
             data: {
-                amount: amount,
+                amount: widthdrawlAmount,
                 token: JSON.parse(localStorage.getItem("token"))
             },
             withCredentials: true,
@@ -88,8 +89,8 @@ function Widthdrawl() {
                         type="number"
                         className="form-control text-left pl-2 w-100"
                         placeholder="Enter Amount"
-                        value={0 || amount}
-                        onChange={(e) => setAmount(e.target.value)}
+                        value={0 || widthdrawlAmount}
+                        onChange={(e) => setWidthdrawlAmount(e.target.value)}
                     />
                 </div>
 

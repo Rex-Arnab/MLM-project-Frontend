@@ -131,15 +131,16 @@ const LevelReport = () => {
 
 const TransactionHistory = () => {
     const [txd, setTxd] = useState([]);
+    const user = JSON.parse(localStorage.getItem("user"));
     useEffect(() => {
-        axios.post("https://stormy-ridge-27884.herokuapp.com/transaction/user", { token: localStorage.getItem("token") })
+        axios.post("https://stormy-ridge-27884.herokuapp.com/transaction/user", { uid: user.uid })
             .then(res => {
-                setTxd(res.data.transaction);
+                setTxd(res.data.txd);
             })
             .catch(err => {
                 console.log(err);
             })
-    }, [])
+    }, [user.uid])
     return (
         <div className="section">
             {txd ? (

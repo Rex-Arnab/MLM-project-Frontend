@@ -20,7 +20,6 @@ function JoinNmem() {
 
     return (
         <div className="section">
-            <h2>Available IDs : {user.id_count}</h2>
             <h1 className="join-head">Join Members</h1>
             <Form>
                 <Form.Group className="mb-3" controlId="fromRegisterUsername">
@@ -158,12 +157,11 @@ function JoinNmem() {
                         addhar: regsiterAddar,
                         head: regsiterHeadmem,
                         type: "joinMember"
-                            
                     }}
                         text="Pay Now"
                     />
                     <span className="mr-2">OR</span>
-                    {/* <Razorpay amount={localStorage.getItem("id_price")} userDetail={{
+                    <Razorpay amount={localStorage.getItem("id_price")} userDetail={{
                         uname: regsiterUsername,
                         name: regsiterName,
                         phone: regsiterPhone,
@@ -173,15 +171,14 @@ function JoinNmem() {
                             
                     }}
                         text="Pay with Activation wallet"
-                        disabled={user.id_count === 0}
-                    /> */}
-                    <Button
+                    />
+                    {/* <Button
                         variant="primary"
                         type="submit"
                         disabled={ true }
                     >
-                    Pay with Activation wallet (Remaining IDs {user.id_count})
-                </Button>
+                    Pay with Activation wallet
+                </Button> */}
                </div>
             </Form>
         </div>

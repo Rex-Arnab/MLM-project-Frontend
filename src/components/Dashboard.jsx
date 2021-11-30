@@ -29,7 +29,7 @@ function Dashboard() {
                 <div className="p-2">{new Date(user.created_at).toLocaleDateString()}</div>
             </nav>
 
-            {promotion.length !== 0 && (
+            {promotion !== "off" && (
                 <div className="alert alert-warning alert-dismissible fade show" role="alert">
                     <h4 className="alert-heading text-center">{promotion}</h4>
                 </div>

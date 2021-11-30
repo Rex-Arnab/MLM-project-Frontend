@@ -55,3 +55,7 @@ div.section {
   justify-content: space-between;
   align-items: center;
 }
+
+.login {
+  height: 100vh;
+}

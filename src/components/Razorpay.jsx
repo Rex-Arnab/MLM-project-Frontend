@@ -15,7 +15,7 @@ function loadScript(src) {
 }
 
 
-function Razorpay({amount, userDetail, text}) {
+function Razorpay({ amount, userDetail, text }) {
 	async function displayRazorpay() {
 		const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
 
@@ -24,13 +24,13 @@ function Razorpay({amount, userDetail, text}) {
 			return
 		}
 
-        const data = await axios.post('https://stormy-ridge-27884.herokuapp.com/pay/razorpay', {
-            amount: amount,
-        })
+		const data = await axios.post('https://stormy-ridge-27884.herokuapp.com/pay/razorpay', {
+			amount: amount,
+		})
 
 		const options = {
 			// key: 'rzp_test_E1a23udbRfmhNA' ,
-			key: 'rzp_live_gPvbR0S04OUDro' ,
+			key: 'rzp_live_VHxt2VR8BNRHm7',
 			currency: data.data.currency,
 			amount: data.data.amount.toString(),
 			order_id: data.data.id,
@@ -44,10 +44,10 @@ function Razorpay({amount, userDetail, text}) {
 
 				if (userDetail.type === "joinMember") {
 					axios({
-					method: "POST",
-					data: {
-						token: localStorage.getItem("token"),
-						username: userDetail.uname,
+						method: "POST",
+						data: {
+							token: localStorage.getItem("token"),
+							username: userDetail.uname,
 							name: userDetail.name,
 							phone: userDetail.phone,
 							email: userDetail.email,
@@ -64,7 +64,7 @@ function Razorpay({amount, userDetail, text}) {
 							alert("Registration Failed")
 						}
 					})
-				} else if(userDetail.type === "referal") {
+				} else if (userDetail.type === "referal") {
 					axios.post('https://stormy-ridge-27884.herokuapp.com/refer/register', {
 						name: userDetail.name,
 						email: userDetail.email,
@@ -73,14 +73,14 @@ function Razorpay({amount, userDetail, text}) {
 						phone: userDetail.name,
 						referal: userDetail.head
 					})
-					.then(res => {
-						if(res.data.status === 'success') {
-							alert(res.data.message)
-						}
-					})
+						.then(res => {
+							if (res.data.status === 'success') {
+								alert(res.data.message)
+							}
+						})
 
 				}
-				
+
 			},
 			prefill: {
 				name: userDetail.name,

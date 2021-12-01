@@ -196,8 +196,8 @@ const WidthdrawlHistory = () => {
     const [txd, setTxd] = useState([]);
     const user = JSON.parse(localStorage.getItem("user"));
     useEffect(() => {
-        // axios.post("https://stormy-ridge-27884.herokuapp.com/widthdrawl/user", { uid: user.uid })
-        axios.post("http://localhost:5000/widthdrawl/user", { uid: user.uid })
+        axios.post("https://stormy-ridge-27884.herokuapp.com/widthdrawl/user", { uid: user.uid })
+        // axios.post("http://localhost:5000/widthdrawl/user", { uid: user.uid })
             .then(res => {
                 setTxd(res.data.txd);
             })

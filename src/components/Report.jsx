@@ -7,6 +7,7 @@ function Report() {
             <h2>My Report</h2>
             <LevelReport />
             <TransactionHistory />
+            <WidthdrawlHistory />
         </div>
     );
 }
@@ -165,6 +166,73 @@ const TransactionHistory = () => {
                                                 <td>{new Date(tx.created_at).toLocaleDateString()}</td>
                                                 <td>{tx.amount}</td>
                                                 <td>{tx.type}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <div className="row">
+                    <div className="col-md-6">
+                        <div className="card">
+                            <div className="card-header">
+                                <h4>Transaction History</h4>
+                            </div>
+                            <div className="card-body">
+                                <h3>No Transaction History</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
+
+const WidthdrawlHistory = () => {
+    const [txd, setTxd] = useState([]);
+    const user = JSON.parse(localStorage.getItem("user"));
+    useEffect(() => {
+        // axios.post("https://stormy-ridge-27884.herokuapp.com/widthdrawl/user", { uid: user.uid })
+        axios.post("http://localhost:5000/widthdrawl/user", { uid: user.uid })
+            .then(res => {
+                setTxd(res.data.txd);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }, [user.uid])
+    return (
+        <div className="section">
+            {txd ? (
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="card">
+                            <div className="card-header">
+                                <h4>Widthdrawl History</h4>
+                            </div>
+                            <div className="card-body">
+                                <table className="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>UID</th>
+                                            <th>Name</th>
+                                            <th>Amount</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {txd.map(tx => (
+                                            <tr key={tx._id}>
+                                                <td>{tx.uid}</td>
+                                                <td>{tx.name}</td>
+                                                <td>{tx.amount}</td>
+                                                <td>{new Date(tx.created_at).toLocaleDateString()}</td>
+                                                <td>{tx.status ? "Processed" : "Pending Approval"}</td>
                                             </tr>
                                         ))}
                                     </tbody>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
@@ -17,9 +17,7 @@ function JoinNmem() {
     const [regsiterAddar, setRegisterAddar] = useState("");
     const [regsiterHeadmem, setRegisterHeadmem] = useState("");
     const user = JSON.parse(localStorage.getItem("user"));
-    useEffect(() => {
-        // Some work later
-    }, [])
+
 
     const buyIDsFromActivationWallet = (e) => {
         axios.post("https://stormy-ridge-27884.herokuapp.com/getUser",{
@@ -38,12 +36,13 @@ function JoinNmem() {
                 head: regsiterHeadmem,
                 type: "activation"
             }).then(resp => {
-                console.log(resp)
                 if(resp.status === 200){
                     alert("Account Created Successfully")
+                } else {
+                    alert("Account Not Created")
                 }
             }).catch(err => {
-                console.log(err)
+                alert("Error : ", err)
             })
         })
     }

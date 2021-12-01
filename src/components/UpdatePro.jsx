@@ -35,7 +35,7 @@ const UpdateProfile = () => {
             axios({
                 method: "POST",
                 data: {
-                    token: JSON.parse(localStorage.getItem("token")),
+                    token: localStorage.getItem("token"),
                     bank_name: regsiterBankname,
                     account_number: regsiterAcountNo,
                     account_holder_name: regsiterHolder,
@@ -45,10 +45,13 @@ const UpdateProfile = () => {
                 withCredentials: true,
                 url: "https://stormy-ridge-27884.herokuapp.com/update_bank_info",
             }).then((response) => {
-                console.log(response);
                 user.is_bank_locked = true;
                 localStorage.setItem("user", JSON.stringify(user));
+                if(response.status === 200){
+                    alert("Bank Details Updated Successfully, Locking Bank Details")
+                }
             }).catch((error) => {
+                    alert("Error: ", error)
                 console.log(error);
             });
         } else {

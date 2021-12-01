@@ -82,6 +82,7 @@ const UserEditModel = ({user, handleSubmit}) => {
 const UserDetailEditForm = ({ user }) => {
     const [username, setUsername] = useState(user.username)
     const [password, setPassword] = useState(user.password)
+    const [name, setName] = useState(user.name)
     const [email, setEmail] = useState(user.email)
     const [phone, setPhone] = useState(user.phone)
     const [head_member, setHeadMember] = useState(user.head_member)
@@ -92,78 +93,86 @@ const UserDetailEditForm = ({ user }) => {
     const [ifsc_code, setIfscCode] = useState(user.bank.ifsc_code)
     const [is_admin, setIsAdmin] = useState(user.is_admin)
     const [is_bank_locked, setIsBankLocked] = useState(user.is_bank_locked)
-    const [id_count, setIdCount] = useState(user.id_count)
+    // const [id_count, setIdCount] = useState(user.id_count)
     // const [referals, setReferals] = useState(user.referals)
-    // const [main_wallet, setMainWallet] = useState(user.wallet.main_wallet)
-    // const [activation_wallet, setActivationWallet] = useState(user.wallet.activation_wallet)
+    const [main_wallet, setMainWallet] = useState(user.wallet.main_wallet)
+    const [activation_wallet, setActivationWallet] = useState(user.wallet.activation_wallet)
+    const [offer_wallet, setOfferWallet] = useState(user.wallet.offer_wallet)
     // const [status, setStatus] = useState(user.status)
     const [created_at, setCreatedAt] = useState(user.created_at)
-    const [level, setLevel] = useState({
-        bronze: {
-            joined: user.levels.bronze.joined,
-            days: user.levels.bronze.days,
-            missed: user.levels.bronze.missed
-        },
-        silver: {
-            joined: user.levels.silver.joined,
-            days: user.levels.silver.days,
-            missed: user.levels.silver.missed
-        },
-        gold: {
-            joined: user.levels.gold.joined,
-            days: user.levels.gold.days,
-            missed: user.levels.gold.missed
-        },
-        pearl: {
-            joined: user.levels.pearl.joined,
-            days: user.levels.pearl.days,
-            missed: user.levels.pearl.missed
-        },
-        emerald: {
-            joined: user.levels.emerald.joined,
-            days: user.levels.emerald.days,
-            missed: user.levels.emerald.missed
-        },
-        ruby: {
-            joined: user.levels.ruby.joined,
-            days: user.levels.ruby.days,
-            missed: user.levels.ruby.missed
-        },
-        platinum: {
-            joined: user.levels.platinum.joined,
-            days: user.levels.platinum.days,
-            missed: user.levels.platinum.missed
-        },
-        diamond: {
-            joined: user.levels.diamond.joined,
-            days: user.levels.diamond.days,
-            missed: user.levels.diamond.missed
-        },
-        royal: {
-            joined: user.levels.royal.joined,
-            days: user.levels.royal.days,
-            missed: user.levels.royal.missed
-        },
-        crown: {
-            joined: user.levels.crown.joined,
-            days: user.levels.crown.days,
-            missed: user.levels.crown.missed
-        },
-        king: {
-            joined: user.levels.king.joined,
-            days: user.levels.king.days,
-            missed: user.levels.king.missed
-        }
-    })
+    // const [level, setLevel] = useState({
+    //     bronze: {
+    //         joined: user.levels.bronze.joined,
+    //         days: user.levels.bronze.days,
+    //         missed: user.levels.bronze.missed
+    //     },
+    //     silver: {
+    //         joined: user.levels.silver.joined,
+    //         days: user.levels.silver.days,
+    //         missed: user.levels.silver.missed
+    //     },
+    //     gold: {
+    //         joined: user.levels.gold.joined,
+    //         days: user.levels.gold.days,
+    //         missed: user.levels.gold.missed
+    //     },
+    //     pearl: {
+    //         joined: user.levels.pearl.joined,
+    //         days: user.levels.pearl.days,
+    //         missed: user.levels.pearl.missed
+    //     },
+    //     emerald: {
+    //         joined: user.levels.emerald.joined,
+    //         days: user.levels.emerald.days,
+    //         missed: user.levels.emerald.missed
+    //     },
+    //     ruby: {
+    //         joined: user.levels.ruby.joined,
+    //         days: user.levels.ruby.days,
+    //         missed: user.levels.ruby.missed
+    //     },
+    //     platinum: {
+    //         joined: user.levels.platinum.joined,
+    //         days: user.levels.platinum.days,
+    //         missed: user.levels.platinum.missed
+    //     },
+    //     diamond: {
+    //         joined: user.levels.diamond.joined,
+    //         days: user.levels.diamond.days,
+    //         missed: user.levels.diamond.missed
+    //     },
+    //     royal: {
+    //         joined: user.levels.royal.joined,
+    //         days: user.levels.royal.days,
+    //         missed: user.levels.royal.missed
+    //     },
+    //     crown: {
+    //         joined: user.levels.crown.joined,
+    //         days: user.levels.crown.days,
+    //         missed: user.levels.crown.missed
+    //     },
+    //     king: {
+    //         joined: user.levels.king.joined,
+    //         days: user.levels.king.days,
+    //         missed: user.levels.king.missed
+    //     }
+    // })
 
     const [loading, setLoading] = useState(false)
     const handleSubmit = (e) => {
         e.preventDefault()
         setLoading(true)
         console.log("Working FIne")
+        let wallet = {
+            main_wallet,
+            activation_wallet,
+            offer_wallet
+        }
+        // axios.post("http://localhost:5000/update_user/" + user.uid, {
         axios.post("https://stormy-ridge-27884.herokuapp.com/update_user/" + user.uid, {
                 username,
                 password,
+                name,
                 email,
                 phone,
                 head_member,
@@ -174,15 +183,17 @@ const UserDetailEditForm = ({ user }) => {
                 ifsc_code,
                 is_admin,
                 is_bank_locked,
-                id_count,
+                created_at,
+                wallet,
                 token: localStorage.getItem("token")
             })
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 setLoading(false)
             })
             .catch(err => {
-                console.log(err)
+                // console.log(err)
+                alert("Error: ",err)
                 setLoading(false)
             })
     }
@@ -202,6 +213,10 @@ const UserDetailEditForm = ({ user }) => {
                         <h5>User Detail</h5>
                     </div>
                     <div className="card-body">
+                        <div className="form-group">
+                            <label htmlFor="username">Name</label>
+                            <input type="text" className="form-control w-100" id="name" placeholder="name" value={name} onChange={(e) => setName(e.target.value)} />
+                        </div>
                         <div className="form-group">
                             <label htmlFor="username">Username</label>
                             <input type="text" className="form-control w-100" id="username" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -260,7 +275,7 @@ const UserDetailEditForm = ({ user }) => {
                                 <h3 className="panel-title">Levels</h3>
                             </div>
                             <div className="panel-body">
-                                <div className="form-group">
+                                {/*<div className="form-group">
                                     <label htmlFor="level">Level</label>
                                     <select className="form-control w-100" id="level" value={level} onChange={(e) => setLevel(e.target.value)}>
                                         <option value="">Select Level</option>
@@ -273,7 +288,7 @@ const UserDetailEditForm = ({ user }) => {
                                         <option value="crown">Crown</option>
                                         <option value="king">King</option>
                                     </select>
-                                </div>
+                                </div>*/}
                                 <div className="form-group">
                                     <label htmlFor="joined">Joined</label>
                                     <input type="datetime-local" className="form-control w-100" id="joined" placeholder="Joined" value={created_at} onChange={(e) => setCreatedAt(e.target.value)} />
@@ -286,10 +301,23 @@ const UserDetailEditForm = ({ user }) => {
                                         <option value="false">No</option>
                                     </select>
                                 </div>
-                                <div className="form-group">
+                                {/*<div className="form-group">
                                     <label htmlFor="id_count">id Count</label>
                                     <input type="number" className="form-control w-100" id="id_count" placeholder="id Count" value={id_count} onChange={(e) => setIdCount(e.target.value)} />
+                                </div>*/}
+                                <div className="form-group">
+                                    <label htmlFor="id_count">Main Wallet</label>
+                                    <input type="number" className="form-control w-100" id="main_wallet" placeholder="Balance..." value={main_wallet} onChange={(e) => setMainWallet(e.target.value)} />
                                 </div>
+                                <div className="form-group">
+                                    <label htmlFor="id_count">Activation Wallet</label>
+                                    <input type="number" className="form-control w-100" id="activation_wallet" placeholder="Balance..." value={activation_wallet} onChange={(e) => setActivationWallet(e.target.value)} />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="id_count">Offer Wallet</label>
+                                    <input type="number" className="form-control w-100" id="offer_wallet" placeholder="Balance..." value={offer_wallet} onChange={(e) => setOfferWallet(e.target.value)} />
+                                </div>
+                                
                                 <div className="form-group">
                                     <label htmlFor="is_bank_locked">is Bank Locked?</label>
                                     <select className="form-control w-100" id="is_bank_locked" value={is_bank_locked} onChange={(e) => setIsBankLocked(e.target.value)}>

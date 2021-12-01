@@ -52,7 +52,8 @@ function Razorpay({ amount, userDetail, text }) {
 							phone: userDetail.phone,
 							email: userDetail.email,
 							aadhar: userDetail.aadhar,
-							head: userDetail.head
+							head: userDetail.head,
+							type: "joinMember"
 						},
 						withCredentials: true,
 						url: "https://stormy-ridge-27884.herokuapp.com/register",

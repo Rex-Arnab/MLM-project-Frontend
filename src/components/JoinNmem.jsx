@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { Form } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { Form, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import Razorpay from "./Razorpay"
+import axios from "axios";
 
 function JoinNmem() {
     const {
@@ -15,8 +16,37 @@ function JoinNmem() {
     const [regsiterEmail, setRegisterEmail] = useState("");
     const [regsiterAddar, setRegisterAddar] = useState("");
     const [regsiterHeadmem, setRegisterHeadmem] = useState("");
-    // const user = JSON.parse(localStorage.getItem("user"));
+    const user = JSON.parse(localStorage.getItem("user"));
+    useEffect(() => {
+        // Some work later
+    }, [])
 
+    const buyIDsFromActivationWallet = (e) => {
+        axios.post("https://stormy-ridge-27884.herokuapp.com/getUser",{
+            token: localStorage.getItem("token")
+        }).then(check => {
+            user.wallet = check.data.wallet;
+        }).then(() => {
+            axios.post("https://stormy-ridge-27884.herokuapp.com/register",{
+            // axios.post("http://localhost:5000/register",{
+                token: localStorage.getItem("token"),
+                username: regsiterUsername,
+                name: regsiterName,
+                phone: regsiterPhone,
+                email: regsiterEmail,
+                aadhar: regsiterAddar,
+                head: regsiterHeadmem,
+                type: "activation"
+            }).then(resp => {
+                console.log(resp)
+                if(resp.status === 200){
+                    alert("Account Created Successfully")
+                }
+            }).catch(err => {
+                console.log(err)
+            })
+        })
+    }
 
     return (
         <div className="section">
@@ -161,7 +191,7 @@ function JoinNmem() {
                         text="Pay Now"
                     />
                     <span className="mr-2">OR</span>
-                    <Razorpay amount={localStorage.getItem("id_price")} userDetail={{
+                    {/*<Razorpay amount={localStorage.getItem("id_price")} userDetail={{
                         uname: regsiterUsername,
                         name: regsiterName,
                         phone: regsiterPhone,
@@ -171,14 +201,14 @@ function JoinNmem() {
                             
                     }}
                         text="Pay with Activation wallet"
-                    />
-                    {/* <Button
+                    />*/}
+                     <Button
                         variant="primary"
-                        type="submit"
-                        disabled={ true }
+                        onClick={buyIDsFromActivationWallet}
+                        disabled={ !(user.wallet.activation_wallet >= localStorage.getItem("id_price")) }
                     >
                     Pay with Activation wallet
-                </Button> */}
+                </Button> 
                </div>
             </Form>
         </div>

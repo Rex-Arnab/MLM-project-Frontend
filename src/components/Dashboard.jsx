@@ -51,22 +51,22 @@ function Dashboard() {
                     </div>
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2" style={{backgroundColor: "rgb(50, 155, 247)"}}>
                         <span>Total Income</span>
-                        <h5 className="text-black">0</h5>
+                        <h5 className="text-black">{Object.values(user.wallet).reduce((total, balance) => total+balance, 50)}</h5>
                     </div>
                 </div>
 
                 <div className="row">
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2" style={{backgroundColor: "rgb(50, 155, 247)"}}>
-                        <span>Main Income</span>
+                        <span>Main Wallet</span>
                         <h5 className="text-black">{user.wallet.main_wallet}</h5>
                     </div>
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2" style={{backgroundColor: "rgb(50, 155, 247)"}}>
-                        <span>Active Income</span>
-                        <h5 className="text-black">0</h5>
+                        <span>Activation wallet</span>
+                        <h5 className="text-black">{user.wallet.activation_wallet}</h5>
                     </div>
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2" style={{backgroundColor: "rgb(50, 155, 247)"}}>
                         <span>Offer Income</span>
-                        <h5 className="text-black">0</h5>
+                        <h5 className="text-black">{user.wallet.offer_wallet}</h5>
                     </div>
                     <div className="col-md-2 col-sm-12 card card-hover-shadow h-100 m-2 p-2" style={{backgroundColor: "rgb(50, 155, 247)"}}>
                         <span>Global Joining</span>
